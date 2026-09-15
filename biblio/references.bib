@@ -1,0 +1,181 @@
+% =====================================================================
+%  biblio/references.bib
+%  Références d'exemple, dont des entrées à titre NON LATIN (arabe,
+%  cyrillique, chinois) pour démontrer le tri et l'affichage corrects.
+%
+%  Astuce : le champ « langid » indique la langue de l'entrée à
+%  biblatex ; le champ « translit »/note peut porter une translittération.
+% =====================================================================
+
+@book{eco2003,
+  author    = {Eco, Umberto},
+  title      = {Dire presque la même chose},
+  subtitle   = {Expériences de traduction},
+  translator = {Bouzaher, Myriem},
+  year       = {2003},
+  publisher  = {Grasset},
+  location   = {Paris},
+  langid     = {french},
+}
+
+@article{toury1995,
+  author    = {Toury, Gideon},
+  title     = {The Nature and Role of Norms in Translation},
+  journaltitle = {Descriptive Translation Studies and Beyond},
+  year      = {1995},
+  pages     = {53--69},
+  publisher = {John Benjamins},
+  location  = {Amsterdam},
+  langid    = {english},
+}
+
+% --- Entrée en cyrillique (russe) ------------------------------------
+@book{barhudarov1975,
+  author    = {Бархударов, Леонид Степанович},
+  title      = {Язык и перевод},
+  subtitle   = {Вопросы общей и частной теории перевода},
+  year       = {1975},
+  publisher  = {Международные отношения},
+  location   = {Москва},
+  langid     = {french},
+  note       = {Trad. du titre : « Langue et traduction »},
+}
+
+% --- Entrée en chinois -----------------------------------------------
+%  Remarque : la bibliographie utilise la police principale (latine).
+%  Pour que les titres/auteurs en écriture chinoise ou arabe s'affichent,
+%  on encapsule ces champs avec les commandes de bascule de police du
+%  modèle (\zh{}, \ar{} — définies dans config/langues.tex). Les accolades
+%  supplémentaires {…} protègent la virgule éventuelle dans les noms.
+@book{luxun1932,
+  author    = {{\zh{魯迅}}},
+  title     = {\zh{翻譯論集}},
+  year      = {1932},
+  publisher = {\zh{商務印書館}},
+  location  = {\zh{上海}},
+  langid    = {french},
+  note      = {Lu Xun, recueil d'essais sur la traduction},
+}
+
+% --- Entrée en arabe -------------------------------------------------
+@book{aljahiz,
+  author    = {{\ar{الجاحظ، عمرو بن بحر}}},
+  title     = {\ar{كتاب الحيوان}},
+  year      = {2003},
+  publisher = {\ar{دار الكتب العلمية}},
+  location  = {\ar{بيروت}},
+  langid    = {french},
+  note      = {Al-Jāḥiẓ, \emph{Kitāb al-Ḥayawān}},
+}
+
+@online{unige_charte,
+  author    = {{Université de Genève, Service de communication}},
+  title     = {Charte graphique — Couleurs institutionnelles},
+  year      = {2023},
+  url       = {https://www.unige.ch/communication/publier/charte/couleurs},
+  urldate   = {2024-01-01},
+  langid    = {french},
+}
+
+% =====================================================================
+%  TRAVAUX DE MEMBRES DU DÉPARTEMENT TIM (FTI, UNIGE)
+%  Exemples réels pour amorcer la bibliographie. Vérifiez et complétez
+%  les champs (pages, DOI, éditeur) selon vos besoins.
+% =====================================================================
+
+% --- Perla Al Almaoui, Pierrette Bouillon, Simon Hengchen -----------
+@inproceedings{alalmaoui2025arabizi,
+  author    = {Al Almaoui, Perla and Bouillon, Pierrette and Hengchen, Simon},
+  title     = {Arabizi vs {LLMs}: Can the Genie Understand the Language
+               of {Aladdin}?},
+  booktitle = {Proceedings of Machine Translation Summit XX, Volume 2},
+  year      = {2025},
+  pages     = {28--41},
+  publisher = {European Association for Machine Translation},
+  location  = {Geneva, Switzerland},
+  langid    = {english},
+}
+
+@inproceedings{mutal2026aladdin,
+  author    = {Mutal, Jonathan and Al Almaoui, Perla and Hengchen, Simon
+               and Bouillon, Pierrette},
+  title     = {{Aladdin-FTI} @ {AMIYA} Three Wishes for {Arabic} {NLP}:
+               Fidelity, Diglossia, and Multidialectal Generation},
+  booktitle = {Proceedings of the 13th Workshop on NLP for Similar
+               Languages, Varieties and Dialects (VarDial)},
+  year      = {2026},
+  pages     = {339--351},
+  location  = {Rabat, Morocco},
+  langid    = {english},
+}
+
+@phdthesis{alalmaoui2024memoire,
+  author    = {Al Almaoui, Perla},
+  title     = {{ChatGPT} comme outil de traduction automatique des
+               discussions {WhatsApp} : évaluation de la traduction de
+               différents dialectes en {Arabizi}},
+  type      = {Mémoire de maîtrise},
+  institution = {Université de Genève, Faculté de traduction et
+               d'interprétation},
+  year      = {2024},
+  langid    = {french},
+}
+
+% --- Pierrette Bouillon (traduction de la parole, BabelDr) -----------
+@article{bouillon2021babeldr,
+  author    = {Bouillon, Pierrette and Gerlach, Johanna and Spechbach,
+               Hervé and Tsourakis, Nikolaos and Halimi Mallem, Ismahene},
+  title     = {{BabelDr} : un traducteur médical fiable fondé sur des
+               phrases préétablies pour la communication avec les patients
+               allophones},
+  journaltitle = {Revue Tranel},
+  year      = {2021},
+  langid    = {french},
+}
+
+% --- Simon Hengchen (changement sémantique, humanités numériques) ----
+@book{tahmasebi2021semanticchange,
+  editor    = {Tahmasebi, Nina and Borin, Lars and Jatowt, Adam and Xu,
+               Yang and Hengchen, Simon},
+  title     = {Computational Approaches to Semantic Change},
+  year      = {2021},
+  publisher = {Language Science Press},
+  location  = {Berlin},
+  doi       = {10.5281/zenodo.5040241},
+  langid    = {english},
+}
+
+@inproceedings{schlechtweg2020semeval,
+  author    = {Schlechtweg, Dominik and McGillivray, Barbara and Hengchen,
+               Simon and Dubossarsky, Haim and Tahmasebi, Nina},
+  title     = {{SemEval-2020} Task 1: Unsupervised Lexical Semantic Change
+               Detection},
+  booktitle = {Proceedings of the 14th International Workshop on Semantic
+               Evaluation (SemEval)},
+  year      = {2020},
+  location  = {Barcelona, Spain},
+  publisher = {Association for Computational Linguistics},
+  langid    = {english},
+}
+
+% --- Aurélie Picton (terminologie, variation, diachronie) ------------
+@article{humbertdroz2022higgs,
+  author    = {Humbert-Droz, Julie and Picton, Aurélie},
+  title     = {Du {Higgs} à la particule de {Dieu} : une analyse de la
+               variation terminologique dans un contexte de
+               déterminologisation},
+  journaltitle = {SHS Web of Conferences (Congrès Mondial de Linguistique
+               Française)},
+  year      = {2022},
+  langid    = {french},
+}
+
+% --- Lucía Morado Vázquez (localisation, standards, XLIFF) -----------
+@article{morado2020xliff,
+  author    = {Morado Vázquez, Lucía and Filip, David},
+  title     = {{XLIFF} et les standards de la localisation :
+               enseignement et pratique},
+  journaltitle = {The Journal of Internationalization and Localization},
+  year      = {2020},
+  langid    = {french},
+}

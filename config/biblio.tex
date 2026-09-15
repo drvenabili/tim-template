@@ -1,0 +1,32 @@
+% =====================================================================
+%  config/biblio.tex
+%  Bibliographie avec biblatex + biber (compatible Unicode/multilingue).
+%  Style : auteur-date, courant en traductologie et sciences humaines.
+% =====================================================================
+
+\usepackage[
+  backend=biber,          % biber : gère l'UTF-8 et le tri multilingue
+  style=authoryear,       % (auteur, année)
+  sorting=nyt,            % tri : nom, année, titre
+  sortlocale=fr_FR,       % tri respectant les règles françaises
+  language=auto,          % chaque référence dans sa langue (champ langid)
+  autolang=other,         % bascule automatiquement les langues secondaires
+  maxbibnames=99,         % liste tous les auteurs dans la bibliographie
+  maxcitenames=2,         % « et al. » au-delà de 2 auteurs dans le texte
+  giveninits=true,        % initiales des prénoms
+  uniquename=init,
+  doi=true, isbn=false, url=true,
+]{biblatex}
+
+% Fichier de références.
+\addbibresource{biblio/references.bib}
+
+% ---------------------------------------------------------------------
+%  Réglages fins conseillés.
+% ---------------------------------------------------------------------
+% Guillemets français autour des titres d'articles (via csquotes).
+\DeclareFieldFormat[article,inbook,incollection,inproceedings]{title}%
+  {\enquote{#1}}
+
+% Espace insécable avant les deux-points, etc. : géré par polyglossia
+% (langue française) — rien à faire ici.

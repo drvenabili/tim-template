@@ -1,0 +1,100 @@
+% =====================================================================
+%  corps/02-exemples-multilingues.tex
+%  Chapitre vitrine : démonstration du support Unicode multi-écritures.
+% =====================================================================
+\chapter{Exemples multilingues}
+\label{chap:exemples}
+
+Ce chapitre illustre l'insertion de texte dans différentes écritures.
+Chaque langue secondaire a été pré-configurée dans
+\texttt{config/langues.tex} avec sa police adéquate
+(\texttt{config/polices.tex}).
+
+% ---------------------------------------------------------------------
+\section{Fragments courts en ligne}
+
+On peut insérer un mot ou une expression à l'aide des commandes de
+confort définies dans le modèle :
+
+\begin{itemize}
+  \item Arabe : \ar{مرحبا بالعالم} (« bonjour le monde »)
+  \item Russe : \ru{Здравствуй, мир}
+  \item Chinois : \zh{你好，世界}
+  \item Japonais : \ja{こんにちは世界}
+  \item Grec : \gr{Γειά σου, κόσμε}
+\end{itemize}
+
+Ces fragments cohabitent sans difficulté dans un paragraphe français,
+y compris pour une langue de droite à gauche comme l'arabe
+\ar{النص العربي} qui reprend ensuite le fil du texte français.
+
+% ---------------------------------------------------------------------
+\section{Passages longs (environnements)}
+
+Pour un passage plus long, on utilise l'environnement de la langue,
+qui gère la césure et la direction du texte.
+
+\subsection{Arabe (droite à gauche)}
+\begin{Arabic}
+اللغة العربية من أكثر اللغات انتشارًا في العالم، وهي تُكتب من اليمين
+إلى اليسار. تُستخدم هذه الفقرة لإظهار المحاذاة الصحيحة للنص العربي داخل
+هذا القالب.
+\end{Arabic}
+
+\subsection{Russe (cyrillique)}
+\begin{russian}
+Русский язык использует кириллический алфавит. Этот абзац демонстрирует
+корректный набор кириллического текста, включая переносы и
+типографику.
+\end{russian}
+
+\subsection{Chinois}
+\begin{chinese}
+这是一段中文示例文字，用于演示本模板对中日韩表意文字的排版支持。
+中文通常不使用空格分词。
+\end{chinese}
+
+\subsection{Japonais}
+\begin{japanese}
+これは日本語のサンプル段落です。ひらがな、カタカナ、漢字が
+混在しても正しく組版されることを示します。
+\end{japanese}
+
+\subsection{Grec}
+\begin{greek}
+Αὕτη ἡ παράγραφος εἶναι γραμμένη στὰ ἑλληνικά, γιὰ νὰ δείξει τὴν
+ὑποστήριξη τοῦ ἑλληνικοῦ ἀλφαβήτου, μαζὶ μὲ τόνους καὶ πνεύματα.
+\end{greek}
+
+% ---------------------------------------------------------------------
+\section{Tableau bilingue}
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabularx}{\linewidth}{@{}l X@{}}
+    \toprule
+    \textbf{Langue} & \textbf{« Traduction » (le mot pour « traduction »)} \\
+    \midrule
+    Français  & traduction \\
+    Arabe     & \ar{ترجمة} \\
+    Russe     & \ru{перевод} \\
+    Chinois   & \zh{翻译} \\
+    Japonais  & \ja{翻訳} \\
+    Grec      & \gr{μετάφραση} \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Le terme « traduction » dans plusieurs langues et écritures.}
+  \label{tab:traduction}
+\end{table}
+
+% ---------------------------------------------------------------------
+\section{Notes et citations multilingues}
+
+Une note de bas de page peut elle aussi contenir plusieurs
+écritures.\footnote{Exemple : arabe \ar{هامش}, russe \ru{сноска},
+chinois \zh{脚注}, japonais \ja{脚注}.}
+
+Les références bibliographiques à titre non latin s'affichent et se
+trient correctement grâce à \texttt{biber} : voir par exemple
+\textcite{barhudarov1975} (russe), \textcite{luxun1932} (chinois) et
+\textcite{aljahiz} (arabe).

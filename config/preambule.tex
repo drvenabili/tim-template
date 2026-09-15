@@ -1,0 +1,67 @@
+% =====================================================================
+%  config/preambule.tex
+%  Réglages généraux : classe, géométrie, paquets de base.
+%  Ce fichier ne charge ni les polices, ni les langues, ni le style
+%  visuel FTI : chacun de ces aspects a son propre fichier de config.
+% =====================================================================
+
+% ---------------------------------------------------------------------
+%  Vérification du moteur : ce modèle est prévu pour XeLaTeX.
+%  (fontspec + polyglossia + rendu Unicode natif de l'arabe, du CJK…)
+% ---------------------------------------------------------------------
+\usepackage{iftex}
+\RequireXeTeX % stoppe la compilation avec un message clair si ce n'est pas XeTeX
+
+% ---------------------------------------------------------------------
+%  Encodage d'entrée : avec XeLaTeX tout est UTF-8 nativement.
+%  (Pas de \usepackage[utf8]{inputenc} ni de fontenc : inutiles/nuisibles.)
+% ---------------------------------------------------------------------
+
+% ---------------------------------------------------------------------
+%  Géométrie de la page
+%  typearea est déjà chargé par scrbook ; on ne le recharge pas (cela
+%  provoquerait un « option clash »). On règle l'empagement via KOMAoptions.
+%    BCOR = correction de reliure (marge intérieure supplémentaire).
+%    DIV  = finesse de l'empagement KOMA (plus grand = marges + petites).
+% ---------------------------------------------------------------------
+\KOMAoptions{DIV=12,BCOR=8mm}
+\recalctypearea
+
+% ---------------------------------------------------------------------
+%  Paquets de base
+% ---------------------------------------------------------------------
+\usepackage{xcolor}            % couleurs (utilisé par style-fti.tex)
+\usepackage{graphicx}          % \includegraphics (logo, figures)
+% microtype améliore la micro-typographie mais est facultatif : on ne
+% le charge que s'il est installé (paquet Fedora : texlive-microtype).
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\usepackage{booktabs}          % \toprule \midrule \bottomrule
+\usepackage{tabularx}          % colonnes de largeur automatique
+\usepackage{ragged2e}          % \RaggedRight, justification fine
+\usepackage{setspace}          % \onehalfspacing pour le corps de la thèse
+\usepackage{enumitem}          % listes personnalisables
+\usepackage{csquotes}          % \enquote{} — guillemets adaptés à la langue
+
+% Interligne : 1,5 est l'usage courant pour une thèse.
+\onehalfspacing
+
+% ---------------------------------------------------------------------
+%  Titres et table des matières (réglages KOMA)
+% ---------------------------------------------------------------------
+\setcounter{tocdepth}{2}       % profondeur de la table des matières
+\setcounter{secnumdepth}{3}    % profondeur de la numérotation des titres
+
+% ---------------------------------------------------------------------
+%  Liens hypertextes et métadonnées PDF.
+%  hyperref doit être chargé tard ; polyglossia/bidi sont chargés
+%  dans langues.tex, avant l'appel à ce bloc dans these.tex.
+% ---------------------------------------------------------------------
+\usepackage[
+  unicode=true,                % métadonnées PDF en Unicode (titres non latins OK)
+  hidelinks,                   % pas de cadres colorés autour des liens
+  pdfusetitle,                 % titre/auteur PDF depuis \title/\author
+  bookmarksnumbered=true,
+]{hyperref}
+
+% Signets PDF corrects même avec des caractères Unicode.
+\usepackage{bookmark}

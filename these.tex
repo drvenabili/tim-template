@@ -1,0 +1,84 @@
+% =====================================================================
+%  these.tex — Document maître
+%  Modèle de thèse de doctorat
+%  Faculté de traduction et d'interprétation (FTI) — Département TIM
+%  Université de Genève
+%
+%  MOTEUR REQUIS : XeLaTeX (Unicode natif, fontspec, polyglossia).
+%  COMPILATION   :
+%      xelatex these
+%      biber   these
+%      xelatex these
+%      xelatex these
+%  (ou simplement `latexmk` grâce au fichier latexmkrc fourni)
+% =====================================================================
+\documentclass[
+  11pt,
+  a4paper,
+  twoside,          % impression recto-verso
+  openright,        % les chapitres commencent sur une page de droite
+  chapterprefix=false,
+]{scrbook}
+
+% ---------------------------------------------------------------------
+%  Configuration (ORDRE IMPORTANT) :
+%    1. preambule : classe, géométrie, paquets de base
+%    2. polices   : fontspec + familles CJK/arabe (avant polyglossia)
+%    3. langues   : polyglossia (après les polices)
+%    4. biblio    : biblatex/biber
+%    5. style-fti : couleurs de la charte, en-têtes, titres
+%  hyperref est chargé dans preambule.tex ; style-fti.tex l'ajuste.
+% ---------------------------------------------------------------------
+\input{config/preambule}
+\input{config/polices}
+\input{config/langues}
+\input{config/biblio}
+\input{config/style-fti}
+
+% ---------------------------------------------------------------------
+%  MÉTADONNÉES DE LA THÈSE
+%  Modifiez ces champs : ils alimentent la page de titre ET les
+%  métadonnées du PDF.
+% ---------------------------------------------------------------------
+\newcommand{\ThesisTitle}{Titre de la thèse}
+\newcommand{\ThesisSubtitle}{Sous-titre éventuel}
+\newcommand{\ThesisAuthor}{Prénom \textsc{Nom}}
+\newcommand{\ThesisDegree}{docteur ès lettres}
+\newcommand{\ThesisSupervisor}{Prof. Prénom \textsc{Nom}}
+\newcommand{\ThesisJury}{Prof. A. \textsc{Un}, Prof. B. \textsc{Deux}}
+\newcommand{\ThesisPlace}{Genève}
+\newcommand{\ThesisDate}{2024}
+
+% Métadonnées PDF (Unicode).
+\title{\ThesisTitle}
+\author{\ThesisAuthor}
+
+% =====================================================================
+\begin{document}
+
+% ---- Pages liminaires (numérotation romaine) ------------------------
+\frontmatter
+\input{couverture/page-titre}
+
+\input{corps/00-remerciements}
+\input{corps/00-resume}
+
+\tableofcontents
+\listoftables   % supprimez si aucune table
+% \listoffigures % décommentez si vous avez des figures
+
+% ---- Corps de la thèse (numérotation arabe) -------------------------
+\mainmatter
+\input{corps/01-introduction}
+\input{corps/02-exemples-multilingues}
+\input{corps/99-conclusion}
+
+% ---- Annexes --------------------------------------------------------
+\appendix
+\input{annexes/A-annexe}
+
+% ---- Bibliographie --------------------------------------------------
+\backmatter
+\printbibliography[heading=bibintoc, title={Bibliographie}]
+
+\end{document}

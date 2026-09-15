@@ -1,0 +1,82 @@
+% =====================================================================
+%  config/style-fti.tex
+%  Identité visuelle : couleurs de la charte graphique de l'Université
+%  de Genève, en-têtes/pieds de page, mise en forme des titres.
+%
+%  Sources des couleurs (charte graphique UNIGE, Service de communication) :
+%    https://www.unige.ch/communication/publier/charte/couleurs
+%  Valeurs officielles :
+%    - Rouge institutionnel UNIGE : Pantone 214C / #CF0063 / RVB 207,0,99
+%    - Gris du sceau              : 45 % noir     / #A3A3A3 / RVB 163,163,163
+%    - Couleur de la FACULTÉ de traduction et d'interprétation (FTI) :
+%                                   Pantone 152C  / #FF5C00 / RVB 255,92,0
+% =====================================================================
+
+% ---------------------------------------------------------------------
+%  Palette
+% ---------------------------------------------------------------------
+\definecolor{unigeRouge}{HTML}{CF0063} % rouge institutionnel (Pantone 214C)
+\definecolor{unigeGris}{HTML}{A3A3A3}  % gris du sceau (45 % noir)
+\definecolor{ftiOrange}{HTML}{FF5C00}  % couleur de la faculté FTI (Pantone 152C)
+
+%  Couleur d'accent employée dans tout le document. Par défaut : la
+%  couleur de la FTI (orange). Passez à \unigeRouge pour un rendu
+%  « institutionnel » plus neutre.
+\colorlet{accent}{ftiOrange}
+
+% ---------------------------------------------------------------------
+%  En-têtes et pieds de page (scrlayer-scrpage, KOMA)
+% ---------------------------------------------------------------------
+\usepackage[headsepline]{scrlayer-scrpage}
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+
+% Filet de séparation d'en-tête à la couleur d'accent.
+\setkomafont{headsepline}{\color{accent}}
+\KOMAoptions{headsepline=0.8pt}
+
+% Contenu des en-têtes/pieds :
+%   - en-tête extérieur : titre courant de chapitre/section
+%   - pied extérieur    : numéro de page
+\automark[section]{chapter}
+\ihead{}
+\ohead{\small\headmark}
+\ofoot*{\normalfont\color{accent}\pagemark}
+\cfoot*{}
+
+% Marques de chapitre/section en style « propre » (sans « Chapitre N. »).
+\renewcommand*{\chaptermarkformat}{}
+
+% ---------------------------------------------------------------------
+%  Mise en forme des titres (KOMA : \setkomafont / \addtokomafont)
+% ---------------------------------------------------------------------
+% Titres en police sans empattement, teintés à la couleur d'accent.
+\addtokomafont{disposition}{\sffamily}
+\addtokomafont{chapter}{\color{accent}}
+\addtokomafont{section}{\color{accent}}
+\addtokomafont{subsection}{\color{accent!85!black}}
+
+% Numéro de chapitre imposant (style KOMA « chapterprefix » désactivé,
+% numéro intégré au titre).
+\renewcommand*{\chapterformat}{%
+  \mbox{\textcolor{accent}{\Huge\thechapter}\enskip}%
+}
+
+% ---------------------------------------------------------------------
+%  Liens hypertextes teintés à l'accent (discret, hyperref = hidelinks
+%  masque les cadres ; ici on colore juste le texte des références).
+% ---------------------------------------------------------------------
+\hypersetup{
+  colorlinks = false,   % pas de couleur agressive pour l'impression
+  linkcolor  = accent,
+  citecolor  = accent,
+  urlcolor   = accent,
+}
+
+% ---------------------------------------------------------------------
+%  Petites commandes utilitaires pour la page de titre / le style.
+% ---------------------------------------------------------------------
+% Filet horizontal à la couleur d'accent.
+\newcommand{\ftirule}[1][\linewidth]{%
+  {\color{accent}\rule{#1}{1.2pt}}%
+}

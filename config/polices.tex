@@ -1,0 +1,168 @@
+% =====================================================================
+%  config/polices.tex
+%  Configuration typographique (fontspec — XeLaTeX).
+%
+%  Choix : polices 100 % LIBRES, déjà présentes dans TeX Live / la
+%  distribution de polices Noto. Aucune police propriétaire.
+%
+%  Remarque sur la charte UNIGE : la police institutionnelle officielle
+%  est « TheSans » (LucasFonts), qui est PROPRIÉTAIRE et ne peut pas être
+%  redistribuée dans ce modèle. On utilise donc « Noto Sans » comme
+%  substitut libre pour les éléments de type titre / logotype. Si vous
+%  disposez d'une licence TheSans installée sur votre système, voir la
+%  note « SUBSTITUTION THESANS » plus bas.
+% =====================================================================
+
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX} % «--», «---», guillemets… gérés correctement
+
+% ---------------------------------------------------------------------
+%  1) POLICE PRINCIPALE (corps du texte)
+%     Noto Serif : couverture Latin + Cyrillique + Grec (utile pour le
+%     russe et le grec en écriture « inline » sans changer de police).
+%
+%  Repli automatique (voir la NOTE sur les polices variables plus bas et
+%  scripts/get-fonts.sh) : si des faces STATIQUES de Noto Serif ont été
+%  déposées dans ressources/polices/, on les charge par chemin ; sinon
+%  on charge « Noto Serif » par son nom (cas normal sur Overleaf).
+% ---------------------------------------------------------------------
+\IfFileExists{ressources/polices/NotoSerif-Regular.ttf}{%
+  \setmainfont{NotoSerif}[
+    Path            = ressources/polices/,
+    Extension       = .ttf,
+    UprightFont     = *-Regular,
+    BoldFont        = *-Bold,
+    ItalicFont      = *-Italic,
+    BoldItalicFont  = *-BoldItalic,
+  ]%
+}{%
+  \setmainfont{Noto Serif}%
+}
+
+% ---------------------------------------------------------------------
+%  2) POLICE SANS EMPATTEMENT (titres, page de titre, logotype)
+%     Substitut libre de TheSans. Même repli statique que ci-dessus.
+% ---------------------------------------------------------------------
+\IfFileExists{ressources/polices/NotoSans-Regular.ttf}{%
+  \setsansfont{NotoSans}[
+    Path            = ressources/polices/,
+    Extension       = .ttf,
+    UprightFont     = *-Regular,
+    BoldFont        = *-Bold,
+    ItalicFont      = *-Italic,
+    BoldItalicFont  = *-BoldItalic,
+  ]%
+}{%
+  \setsansfont{Noto Sans}%
+}
+
+% ---------------------------------------------------------------------
+%  3) POLICE À CHASSE FIXE (code, chemins, exemples techniques)
+% ---------------------------------------------------------------------
+\IfFileExists{ressources/polices/NotoSansMono-Regular.ttf}{%
+  \setmonofont{NotoSansMono}[
+    Path=ressources/polices/, Extension=.ttf,
+    UprightFont=*-Regular, BoldFont=*-Bold,
+    Scale=MatchLowercase,
+  ]%
+}{%
+  \setmonofont{Noto Sans Mono}[Scale=MatchLowercase]%
+}
+
+% ---------------------------------------------------------------------
+%  SUBSTITUTION THESANS (optionnel)
+%  Si vous possédez TheSans, commentez le \setsansfont ci-dessus et
+%  décommentez :
+%
+%  \setsansfont{TheSans}[
+%    UprightFont = TheSans-Plain,
+%    BoldFont    = TheSans-Bold,
+%    ItalicFont  = TheSans-PlainItalic,
+%  ]
+% ---------------------------------------------------------------------
+
+% =====================================================================
+%  POLICES POUR LES ÉCRITURES NON LATINES
+%  Déclarées comme familles séparées ; polyglossia (langues.tex) les
+%  associe aux langues correspondantes. On garde aussi des commandes
+%  \...font manuelles pour un usage direct.
+% =====================================================================
+
+% =====================================================================
+%  NOTE IMPORTANTE SUR LES POLICES CJK ET ARABE ET LE PDF
+%  ---------------------------------------------------------------------
+%  XeLaTeX produit le PDF via « xdvipdfmx », qui NE SAIT PAS embarquer
+%  une police VARIABLE (fichiers du type « NotoSerifCJK-VF.ttc » ou
+%  « NotoNaskhArabic[wght].ttf »). Si votre système ne fournit QUE des
+%  versions variables (cas de certaines distributions Linux récentes,
+%  p. ex. Fedora), la compilation échoue avec :
+%        xdvipdfmx:fatal: Invalid font
+%
+%  Sur OVERLEAF et la plupart des installations TeX Live, les versions
+%  STATIQUES de Noto sont présentes : le chargement par NOM ci-dessous
+%  fonctionne directement. Voir le README (section « Polices ») pour le
+%  repli sur les systèmes à polices variables.
+% =====================================================================
+
+% --- Arabe (écriture de droite à gauche) -----------------------------
+%  Noto Naskh Arabic : style naskh classique, très lisible.
+%  Alternatives libres : « Amiri », « Scheherazade New ».
+%
+%  Repli automatique : si des instances STATIQUES ont été déposées dans
+%  ressources/polices/ (voir scripts/get-fonts.sh et le README), on les
+%  charge en priorité ; sinon on charge la police système par son nom.
+\IfFileExists{ressources/polices/NotoNaskhArabic-Regular.ttf}{%
+  \newfontfamily\arabicfont[
+    Path        = ressources/polices/,
+    Extension   = .ttf,
+    UprightFont = NotoNaskhArabic-Regular,
+    BoldFont    = NotoNaskhArabic-Bold,
+    Script      = Arabic,
+  ]{NotoNaskhArabic}%
+}{%
+  \newfontfamily\arabicfont{Noto Naskh Arabic}[Script=Arabic]%
+}
+
+% --- Chinois (simplifié) ---------------------------------------------
+\IfFileExists{ressources/polices/NotoSerifCJKSC-Regular.otf}{%
+  \newfontfamily\chinesefont[
+    Path        = ressources/polices/,
+    Extension   = .otf,
+    UprightFont = NotoSerifCJKSC-Regular,
+    BoldFont    = NotoSerifCJKSC-Bold,
+  ]{NotoSerifCJKSC}%
+}{%
+  \newfontfamily\chinesefont{Noto Serif CJK SC}%
+}
+
+% --- Japonais --------------------------------------------------------
+\IfFileExists{ressources/polices/NotoSerifCJKJP-Regular.otf}{%
+  \newfontfamily\japanesefont[
+    Path        = ressources/polices/,
+    Extension   = .otf,
+    UprightFont = NotoSerifCJKJP-Regular,
+    BoldFont    = NotoSerifCJKJP-Bold,
+  ]{NotoSerifCJKJP}%
+}{%
+  \newfontfamily\japanesefont{Noto Serif CJK JP}%
+}
+
+% --- Grec et Russe / Cyrillique --------------------------------------
+%  Noto Serif couvre déjà le grec et le cyrillique ; on définit des
+%  familles explicites pour que polyglossia dispose de \greekfont et
+%  \russianfont dédiés. Même repli statique que la police principale.
+\IfFileExists{ressources/polices/NotoSerif-Regular.ttf}{%
+  \newfontfamily\greekfont[
+    Path=ressources/polices/, Extension=.ttf,
+    UprightFont=*-Regular, BoldFont=*-Bold,
+    ItalicFont=*-Italic, BoldItalicFont=*-BoldItalic,
+  ]{NotoSerif}%
+  \newfontfamily\russianfont[
+    Path=ressources/polices/, Extension=.ttf,
+    UprightFont=*-Regular, BoldFont=*-Bold,
+    ItalicFont=*-Italic, BoldItalicFont=*-BoldItalic,
+  ]{NotoSerif}%
+}{%
+  \newfontfamily\greekfont{Noto Serif}%
+  \newfontfamily\russianfont{Noto Serif}%
+}

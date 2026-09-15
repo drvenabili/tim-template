@@ -1,0 +1,39 @@
+# Artefacts LaTeX
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.toc
+*.lof
+*.lot
+*.xdv
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+*.idx
+*.ilg
+*.ind
+*.glo
+*.gls
+*.acn
+*.acr
+*.alg
+*.xdy
+
+# Sortie
+these.pdf
+
+# Divers
+*.bak
+*~
+.DS_Store
+
+# Polices statiques téléchargées localement (voir scripts/get-fonts.sh) :
+# volumineuses (CJK ~100 Mo), à ne pas versionner. Overleaf n'en a pas besoin.
+ressources/polices/

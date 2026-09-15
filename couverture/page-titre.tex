@@ -1,0 +1,85 @@
+% =====================================================================
+%  couverture/page-titre.tex
+%  Page de titre au style FTI / Université de Genève.
+%
+%  Structure inspirée de la charte graphique UNIGE :
+%    - logo institutionnel en haut
+%    - rattachement (Université / Faculté / Département)
+%    - titre de la thèse
+%    - mention de thèse (grade, discipline)
+%    - auteur, direction, jury
+%    - lieu et date
+%
+%  Le logo officiel (ressources/logo-unige.pdf) provient de Wikimedia
+%  Commons (« File:Uni GE logo.svg »). Pour un rendu conforme à la
+%  charte, remplacez-le par la version fournie par le Service de
+%  communication de l'UNIGE.
+% =====================================================================
+
+\begin{titlepage}
+\sffamily
+\centering
+
+% --- Logo institutionnel ---------------------------------------------
+\includegraphics[height=2.2cm]{ressources/logo-unige.pdf}
+
+\vspace{1.2cm}
+
+% --- Rattachement ----------------------------------------------------
+{\large Faculté de traduction et d'interprétation\par}
+{\normalsize Département de traitement informatique multilingue (TIM)\par}
+
+\vspace{2.2cm}
+
+\ftirule[0.6\linewidth]
+
+\vspace{1.4cm}
+
+% --- Titre de la thèse -----------------------------------------------
+{\LARGE\bfseries\color{accent}
+  \ThesisTitle\par}
+\vspace{0.6cm}
+{\large\itshape \ThesisSubtitle\par}
+
+\vspace{1.4cm}
+
+\ftirule[0.6\linewidth]
+
+\vfill
+
+% --- Mention de thèse ------------------------------------------------
+{\normalsize
+  Thèse présentée à la Faculté de traduction et d'interprétation\\
+  pour l'obtention du grade de \ThesisDegree\par}
+
+\vspace{1.4cm}
+
+% --- Auteur ----------------------------------------------------------
+{\large par\par}
+\vspace{0.3cm}
+{\Large\bfseries \ThesisAuthor\par}
+
+\vspace{1.4cm}
+
+% --- Direction et jury ----------------------------------------------
+{\normalsize
+  \begin{tabular}{@{}r@{\hspace{1em}}l@{}}
+    Directrice/Directeur de thèse : & \ThesisSupervisor \\[2pt]
+    Membres du jury :               & \ThesisJury \\
+  \end{tabular}\par}
+
+\vfill
+
+% --- Lieu et date ----------------------------------------------------
+{\normalsize \ThesisPlace, \ThesisDate\par}
+
+\end{titlepage}
+
+% Page de dos de titre (mentions légales, thèse n°, etc.) — optionnelle.
+\thispagestyle{empty}
+\null\vfill
+{\footnotesize\sffamily\noindent
+Thèse de doctorat de l'Université de Genève, Faculté de traduction et
+d'interprétation.\\
+\ThesisPlace, \ThesisDate.\par}
+\clearpage

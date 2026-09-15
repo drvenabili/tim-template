@@ -1,0 +1,57 @@
+% =====================================================================
+%  config/langues.tex
+%  Gestion multilingue avec polyglossia (adapté à XeLaTeX).
+%
+%  Langue principale : FRANÇAIS (typographie française : espaces
+%  insécables avant : ; ! ?, guillemets « … », etc.).
+%
+%  Langues secondaires pré-configurées, avec leur écriture :
+%    - arabe    (arabe,   RTL)
+%    - russe    (cyrillique)
+%    - chinois  (hans/CJK)
+%    - japonais (CJK)
+%    - grec     (grec moderne/ancien)
+%
+%  IMPORTANT : polyglossia doit être chargé APRÈS fontspec (polices.tex)
+%  et les familles \arabicfont, \chinesefont, etc. doivent déjà exister.
+% =====================================================================
+
+\usepackage{polyglossia}
+
+% --- Langue principale -----------------------------------------------
+\setmainlanguage{french}
+
+% --- Langues secondaires ---------------------------------------------
+%  polyglossia associe automatiquement \arabicfont, \russianfont,
+%  \chinesefont, \japanesefont, \greekfont (définis dans polices.tex).
+\setotherlanguage{english} % pour l'abstract en anglais
+\setotherlanguage{arabic}
+\setotherlanguage{russian}
+\setotherlanguage[variant=simplified]{chinese}
+\setotherlanguage{japanese}
+\setotherlanguage{greek}
+
+% ---------------------------------------------------------------------
+%  Commandes de confort pour insérer un court fragment dans une écriture
+%  donnée, sans avoir à ouvrir un environnement complet.
+%
+%  Exemples d'utilisation :
+%     \ar{النص العربي}     % arabe (bascule en RTL le temps du fragment)
+%     \ru{Русский текст}   % russe
+%     \zh{中文文本}         % chinois
+%     \ja{日本語のテキスト}  % japonais
+%     \gr{Ἑλληνικά}        % grec
+% ---------------------------------------------------------------------
+\newcommand{\ar}[1]{\textarabic{#1}}
+\newcommand{\ru}[1]{\textrussian{#1}}
+\newcommand{\zh}[1]{\textchinese{#1}}
+\newcommand{\ja}[1]{\textjapanese{#1}}
+\newcommand{\gr}[1]{\textgreek{#1}}
+
+% ---------------------------------------------------------------------
+%  Pour des passages longs, utilisez plutôt les environnements fournis
+%  par polyglossia, p. ex. :
+%     \begin{arabic} ... \end{arabic}
+%     \begin{russian} ... \end{russian}
+%  qui gèrent aussi la césure et la direction du texte.
+% ---------------------------------------------------------------------
