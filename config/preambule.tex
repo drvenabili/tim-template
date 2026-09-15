@@ -42,6 +42,21 @@
 \usepackage{enumitem}          % listes personnalisables
 \usepackage{csquotes}          % \enquote{} — guillemets adaptés à la langue
 
+% ---------------------------------------------------------------------
+%  Compatibilité TeX Live 2026 (arabe dans les tableaux)
+%  Le noyau LaTeX 2026 a retiré la « fake math » autour des structures
+%  tabulaires. Or le paquet « bidi » (chargé par polyglossia pour l'arabe,
+%  voir config/langues.tex) appelle encore \UseMathForPositioningText,
+%  désormais indéfini : dès qu'un tableau (tabular/tabularx) apparaît, on
+%  obtient « Undefined control sequence » — y compris sur Overleaf (TL2026).
+%  Ce shim rétablit la macro. Il est défini AVANT le chargement de bidi et
+%  reste inoffensif sur les versions antérieures de TeX Live.
+%  Réf. : https://www.overleaf.com/blog/tex-live-2026-is-now-available
+%         (section « polyglossia, xepersian, and array »).
+\makeatletter
+\providecommand\UseMathForPositioningText{\m@th}
+\makeatother
+
 % Interligne : 1,5 est l'usage courant pour une thèse.
 \onehalfspacing
 

@@ -149,8 +149,22 @@ scripts/
   environnements `\begin{Arabic}…\end{Arabic}`, `\begin{russian}…`, etc.
   (voir `corps/02-exemples-multilingues.tex`).
 
-  > Note : l'environnement arabe s'écrit avec une **majuscule**
-  > (`Arabic`) pour éviter un conflit avec la commande `\arabic` de LaTeX.
+  > **Arabe (droite à gauche).** L'arabe est géré par `polyglossia`
+  > (paquet `bidi`), ce qui assure un **véritable rendu RTL** : un gros
+  > paragraphe arabe est justifié et aligné à droite, avec un ordre des
+  > lignes et une césure corrects. Utilisez `\ar{…}` pour un fragment
+  > court et l'environnement `\begin{Arabic}…\end{Arabic}` (avec une
+  > **majuscule**, pour éviter le conflit avec la commande `\arabic`) pour
+  > un paragraphe entier.
+  >
+  > **Compatibilité TeX Live 2026 / Overleaf.** Le noyau LaTeX 2026 a
+  > retiré la « fake math » autour des tableaux ; `bidi` provoque alors une
+  > erreur `\UseMathForPositioningText` dès qu'un tableau contient (ou
+  > côtoie) de l'arabe. Le modèle intègre le correctif recommandé (un shim
+  > `\providecommand\UseMathForPositioningText{\m@th}` dans
+  > `config/preambule.tex`) : les tableaux et l'arabe fonctionnent
+  > ensemble, sur Overleaf comme en local. Réf. :
+  > <https://www.overleaf.com/blog/tex-live-2026-is-now-available>
 
 ## Écritures dans la bibliographie
 

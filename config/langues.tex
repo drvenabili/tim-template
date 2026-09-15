@@ -6,14 +6,22 @@
 %  insécables avant : ; ! ?, guillemets « … », etc.).
 %
 %  Langues secondaires pré-configurées, avec leur écriture :
-%    - arabe    (arabe,   RTL)
+%    - arabe    (arabe,   RTL — vrai rendu droite-à-gauche via bidi)
 %    - russe    (cyrillique)
 %    - chinois  (hans/CJK)
 %    - japonais (CJK)
 %    - grec     (grec moderne/ancien)
+%    - anglais  (pour l'abstract)
 %
 %  IMPORTANT : polyglossia doit être chargé APRÈS fontspec (polices.tex)
-%  et les familles \arabicfont, \chinesefont, etc. doivent déjà exister.
+%  et les familles \arabicfont, \russianfont, etc. doivent déjà exister.
+%
+%  ARABE + TABLEAUX : l'option « arabic » charge le paquet « bidi », qui
+%  assure un vrai algorithme de paragraphe RTL (alignement à droite,
+%  césure, ordre des lignes). Sous TeX Live 2026 (dont Overleaf), bidi
+%  provoque une erreur « \UseMathForPositioningText » dans les tableaux ;
+%  le correctif est appliqué dans config/preambule.tex (shim), chargé
+%  AVANT bidi. Voir ce fichier pour les détails.
 % =====================================================================
 
 \usepackage{polyglossia}
@@ -36,7 +44,7 @@
 %  donnée, sans avoir à ouvrir un environnement complet.
 %
 %  Exemples d'utilisation :
-%     \ar{النص العربي}     % arabe (bascule en RTL le temps du fragment)
+%     \ar{النص العربي}     % arabe (RTL géré par polyglossia/bidi)
 %     \ru{Русский текст}   % russe
 %     \zh{中文文本}         % chinois
 %     \ja{日本語のテキスト}  % japonais
@@ -49,9 +57,16 @@
 \newcommand{\gr}[1]{\textgreek{#1}}
 
 % ---------------------------------------------------------------------
-%  Pour des passages longs, utilisez plutôt les environnements fournis
-%  par polyglossia, p. ex. :
-%     \begin{arabic} ... \end{arabic}
+%  Passages longs
+%  ---------------------------------------------------------------------
+%  Utilisez les environnements fournis par polyglossia, qui gèrent la
+%  césure et la direction du texte :
 %     \begin{russian} ... \end{russian}
-%  qui gèrent aussi la césure et la direction du texte.
+%     \begin{chinese} ... \end{chinese}   etc.
+%
+%  Pour un paragraphe ARABE, utilisez l'environnement « Arabic » avec une
+%  MAJUSCULE (pour éviter le conflit avec la commande \arabic de LaTeX) :
+%     \begin{Arabic} ... \end{Arabic}
+%  Il assure un véritable rendu droite-à-gauche du bloc (alignement à
+%  droite, retours à la ligne et césure corrects).
 % ---------------------------------------------------------------------
