@@ -4,6 +4,13 @@ Modèle LaTeX de **thèse de doctorat** pour la Faculté de traduction et
 d'interprétation (FTI), Département de traitement informatique
 multilingue (TIM), Université de Genève.
 
+[![Open in Overleaf](https://img.shields.io/badge/Open%20in-Overleaf-47A141?logo=overleaf&logoColor=white)](https://www.overleaf.com/docs?snip_uri=https://github.com/drvenabili/tim-template/archive/refs/heads/main.zip)
+
+> Le bouton **Open in Overleaf** importe le dépôt dans un nouveau projet.
+> Pensez ensuite à régler le compilateur sur **XeLaTeX**
+> (*Menu → Settings → Compiler*).
+
+
 - **Moteur : XeLaTeX** (Unicode natif, `fontspec`, `polyglossia`).
 - **Multilingue** : français (langue principale) + arabe, russe, chinois,
   japonais, grec pré-configurés, avec exemples.

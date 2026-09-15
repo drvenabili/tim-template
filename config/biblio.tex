@@ -9,8 +9,10 @@
   style=authoryear,       % (auteur, année)
   sorting=nyt,            % tri : nom, année, titre
   sortlocale=fr_FR,       % tri respectant les règles françaises
-  language=auto,          % chaque référence dans sa langue (champ langid)
-  autolang=other,         % bascule automatiquement les langues secondaires
+  language=french,        % langue de la bibliographie (libellés « In », etc.)
+  autolang=none,          % pas de bascule auto : on gère les écritures non
+                          % latines à la main via \ar{}, \zh{} (voir .bib).
+                          % Évite les avertissements « Language not supported ».
   maxbibnames=99,         % liste tous les auteurs dans la bibliographie
   maxcitenames=2,         % « et al. » au-delà de 2 auteurs dans le texte
   giveninits=true,        % initiales des prénoms
@@ -20,6 +22,16 @@
 
 % Fichier de références.
 \addbibresource{biblio/references.bib}
+
+% ---------------------------------------------------------------------
+%  biblatex ne fournit pas de fichiers de localisation (.lbx) pour les
+%  langues arabe / chinois / japonais déclarées à polyglossia, d'où des
+%  avertissements « Language not supported ». Comme la bibliographie est
+%  rédigée en français, on mappe ces langues vers le français pour éviter
+%  ces avertissements (les écritures elles-mêmes sont gérées via \ar{}/\zh{}).
+\DeclareLanguageMapping{arabic}{french}
+\DeclareLanguageMapping{chinese}{french}
+\DeclareLanguageMapping{japanese}{french}
 
 % ---------------------------------------------------------------------
 %  Réglages fins conseillés.

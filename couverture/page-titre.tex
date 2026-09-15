@@ -62,11 +62,16 @@
 \vspace{1.4cm}
 
 % --- Direction et jury ----------------------------------------------
+%  On évite \begin{tabular} ici : le paquet bidi (chargé par polyglossia
+%  pour l'arabe) patche tabular et peut provoquer une « Undefined control
+%  sequence » selon la version de TeX Live. On utilise donc un simple
+%  alignement par \makebox.
 {\normalsize
-  \begin{tabular}{@{}r@{\hspace{1em}}l@{}}
-    Directrice/Directeur de thèse : & \ThesisSupervisor \\[2pt]
-    Membres du jury :               & \ThesisJury \\
-  \end{tabular}\par}
+  \makebox[0pt][r]{Directrice/Directeur de thèse :\hspace{1em}}%
+  \ThesisSupervisor\par
+  \vspace{2pt}%
+  \makebox[0pt][r]{Membres du jury :\hspace{1em}}%
+  \ThesisJury\par}
 
 \vfill
 
