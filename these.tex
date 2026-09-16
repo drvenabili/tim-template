@@ -1,3 +1,7 @@
+% !TeX program = xelatex
+% !TeX TXS-program:bibliography = txs:///biber
+% !BIB program = biber
+% !TeX encoding = UTF-8
 % =====================================================================
 %  these.tex — Document maître
 %  Modèle de thèse de doctorat
@@ -5,7 +9,11 @@
 %  Université de Genève
 %
 %  MOTEUR REQUIS : XeLaTeX (Unicode natif, fontspec, polyglossia).
-%  COMPILATION   :
+%  Sur Overleaf, le compilateur (XeLaTeX) et l'outil de bibliographie
+%  (biber) sont détectés automatiquement grâce aux commentaires « magiques »
+%  ci-dessus (% !TeX program / % !BIB program).
+%
+%  COMPILATION en ligne de commande :
 %      xelatex these
 %      biber   these
 %      xelatex these
@@ -43,7 +51,7 @@
 \newcommand{\ThesisTitle}{Titre de la thèse}
 \newcommand{\ThesisSubtitle}{Sous-titre éventuel}
 \newcommand{\ThesisAuthor}{Prénom \textsc{Nom}}
-\newcommand{\ThesisDegree}{docteur ès lettres}
+\newcommand{\ThesisDegree}{docteur·e en traitement informatique multilingue}
 \newcommand{\ThesisSupervisor}{Prof. Prénom \textsc{Nom}}
 \newcommand{\ThesisJury}{Prof. A. \textsc{Un}, Prof. B. \textsc{Deux}}
 \newcommand{\ThesisPlace}{Genève}
