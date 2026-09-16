@@ -4,11 +4,12 @@ Modèle LaTeX de **thèse de doctorat** pour la Faculté de traduction et
 d'interprétation (FTI), Département de traitement informatique
 multilingue (TIM), Université de Genève.
 
-[![Open in Overleaf](https://img.shields.io/badge/Open%20in-Overleaf-47A141?logo=overleaf&logoColor=white)](https://www.overleaf.com/docs?snip_uri=https://github.com/drvenabili/tim-template/archive/refs/heads/main.zip)
+[![Open in Overleaf](https://img.shields.io/badge/Open%20in-Overleaf-47A141?logo=overleaf&logoColor=white)](https://www.overleaf.com/docs?engine=xelatex&snip_uri=https://github.com/drvenabili/tim-template/archive/refs/heads/main.zip)
 
-> Le bouton **Open in Overleaf** importe le dépôt dans un nouveau projet.
-> Pensez ensuite à régler le compilateur sur **XeLaTeX**
-> (*Menu → Settings → Compiler*).
+> Le bouton **Open in Overleaf** importe le dépôt dans un nouveau projet
+> et règle d'emblée le compilateur sur **XeLaTeX** (paramètre
+> `engine=xelatex` de l'URL). Si jamais Overleaf revenait à pdfLaTeX,
+> réglez-le manuellement : *Menu → Settings → Compiler → XeLaTeX*.
 
 
 - **Moteur : XeLaTeX** (Unicode natif, `fontspec`, `polyglossia`).
