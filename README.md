@@ -4,12 +4,22 @@ Modèle LaTeX de **thèse de doctorat** pour la Faculté de traduction et
 d'interprétation (FTI), Département de traitement informatique
 multilingue (TIM), Université de Genève.
 
-[![Open in Overleaf](https://img.shields.io/badge/Open%20in-Overleaf-47A141?logo=overleaf&logoColor=white)](https://www.overleaf.com/docs?engine=xelatex&snip_uri=https://github.com/drvenabili/tim-template/archive/refs/heads/main.zip)
+[![Open in Overleaf](https://img.shields.io/badge/Open%20in-Overleaf-47A141?logo=overleaf&logoColor=white)](https://www.overleaf.com/docs?engine=xelatex&snip_uri=https://github.com/drvenabili/tim-template/releases/latest/download/These-UNIGE-FTI.zip)
 
-> Le bouton **Open in Overleaf** importe le dépôt dans un nouveau projet
-> et règle d'emblée le compilateur sur **XeLaTeX** (paramètre
-> `engine=xelatex` de l'URL). Si jamais Overleaf revenait à pdfLaTeX,
-> réglez-le manuellement : *Menu → Settings → Compiler → XeLaTeX*.
+> Le bouton **Open in Overleaf** importe le modèle dans un nouveau projet
+> nommé **« These-UNIGE-FTI »** et règle d'emblée le compilateur sur
+> **XeLaTeX** (paramètre `engine=xelatex`). Si jamais Overleaf revenait à
+> pdfLaTeX, réglez-le manuellement : *Menu → Settings → Compiler →
+> XeLaTeX*.
+>
+> Le bouton pointe vers l'archive `These-UNIGE-FTI.zip` de la **dernière
+> release** GitHub (générée automatiquement, voir
+> `.github/workflows/release-zip.yml`). Il ne fonctionnera donc qu'après
+> la publication d'une première release. Tant qu'aucune release n'existe,
+> utilisez l'archive de la branche :
+> `…/docs?engine=xelatex&snip_uri=https://github.com/drvenabili/tim-template/archive/refs/heads/main.zip`
+> (le projet s'appellera alors « main » ; renommez-le en un clic dans
+> Overleaf via *Menu → Rename*).
 
 
 - **Moteur : XeLaTeX** (Unicode natif, `fontspec`, `polyglossia`).

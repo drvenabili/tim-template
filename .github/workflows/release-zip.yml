@@ -1,0 +1,61 @@
+name: Release Overleaf zip
+
+# Construit une archive « These-UNIGE-FTI.zip » et l'attache à la release.
+# Le nom de l'archive détermine le nom du projet lors de l'import Overleaf
+# (bouton « Open in Overleaf »).
+
+on:
+  release:
+    types: [created, edited]
+  # Permet aussi un déclenchement manuel depuis l'onglet Actions.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-zip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Construire l'archive nommée
+        run: |
+          set -eux
+          STAGE="These-UNIGE-FTI"
+          mkdir -p "$STAGE"
+          # Copie tout le contenu utile du dépôt dans un dossier nommé,
+          # en excluant git, l'archive elle-même et les polices lourdes.
+          rsync -a \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude="$STAGE" \
+            --exclude='ressources/polices' \
+            --exclude='*.pdf' \
+            --exclude='These-UNIGE-FTI.zip' \
+            --exclude='these.aux' --exclude='these.bbl' --exclude='these.bcf' \
+            --exclude='these.blg' --exclude='these.fdb_latexmk' --exclude='these.fls' \
+            --exclude='these.log' --exclude='these.lof' --exclude='these.lot' \
+            --exclude='these.out' --exclude='these.run.xml' --exclude='these.synctex.gz' \
+            --exclude='these.toc' --exclude='these.xdv' \
+            ./ "$STAGE/"
+          # (On conserve le logo PDF : réintégré explicitement.)
+          mkdir -p "$STAGE/ressources"
+          cp -f ressources/logo-unige.pdf "$STAGE/ressources/" || true
+          cp -f ressources/logo-unige.svg "$STAGE/ressources/" || true
+          zip -r "These-UNIGE-FTI.zip" "$STAGE"
+          ls -la "These-UNIGE-FTI.zip"
+
+      - name: Attacher l'archive à la release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: These-UNIGE-FTI.zip
+
+      - name: Publier l'archive comme artefact (déclenchement manuel)
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: These-UNIGE-FTI
+          path: These-UNIGE-FTI.zip
