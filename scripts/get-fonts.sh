@@ -62,6 +62,9 @@ copy_static() {
 copy_static NotoSerif    Regular Bold Italic BoldItalic
 copy_static NotoSans     Regular Bold Italic BoldItalic
 copy_static NotoSansMono Regular Bold
+#  Tigrinya / écriture éthiopique (guèze) : faces statiques Noto Serif
+#  Ethiopic (paquet Fedora « google-noto-serif-ethiopic-fonts », sans -vf-).
+copy_static NotoSerifEthiopic Regular Bold
 
 echo ">> Police arabe : génération d'une instance statique (si nécessaire)…"
 ARABIC_VF="$(fc-match -f '%{file}' 'Noto Naskh Arabic' 2>/dev/null || true)"

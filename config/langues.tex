@@ -38,7 +38,11 @@
 \setotherlanguage[variant=simplified]{chinese}
 \setotherlanguage{japanese}
 \setotherlanguage{greek}
-
+% Tigrinya : polyglossia ne fournit pas de « gloss » tigrinya (seul
+% l'amharique existe pour l'éthiopien), d'où des avertissements inutiles.
+% L'écriture éthiopique (guèze) est de gauche à droite et n'a pas besoin
+% de bidi : on se contente d'appliquer la police \tigrinyafont (définie
+% dans polices.tex). On ne déclare donc PAS \setotherlanguage{tigrinya}.
 % ---------------------------------------------------------------------
 %  Commandes de confort pour insérer un court fragment dans une écriture
 %  donnée, sans avoir à ouvrir un environnement complet.
@@ -49,12 +53,14 @@
 %     \zh{中文文本}         % chinois
 %     \ja{日本語のテキスト}  % japonais
 %     \gr{Ἑλληνικά}        % grec
+%     \ti{ትግርኛ}        % tigrinya
 % ---------------------------------------------------------------------
 \newcommand{\ar}[1]{\textarabic{#1}}
 \newcommand{\ru}[1]{\textrussian{#1}}
 \newcommand{\zh}[1]{\textchinese{#1}}
 \newcommand{\ja}[1]{\textjapanese{#1}}
 \newcommand{\gr}[1]{\textgreek{#1}}
+\newcommand{\ti}[1]{{\tigrinyafont #1}}
 
 % ---------------------------------------------------------------------
 %  Passages longs

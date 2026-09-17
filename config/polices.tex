@@ -166,3 +166,22 @@
   \newfontfamily\greekfont{Noto Serif}%
   \newfontfamily\russianfont{Noto Serif}%
 }
+
+% --- Tigrinya / écriture éthiopique (Ge'ez) --------------------------
+%  Noto Serif Ethiopic couvre l'écriture utilisée par le tigrinya.
+%  (Pas de face italique pour cette police : on ne déclare que Regular/Bold.)
+%  Repli statique local (ressources/polices/) sinon chargement par nom :
+%  sur les systèmes ne fournissant que la version VARIABLE de Noto Ethiopic
+%  (Fedora), le chargement par nom échoue (« Invalid font ») ; on privilégie
+%  donc la face statique déposée dans ressources/polices/.
+\IfFileExists{ressources/polices/NotoSerifEthiopic-Regular.ttf}{%
+  \newfontfamily\tigrinyafont[
+    Path=ressources/polices/,
+    Extension=.ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    Script=Ethiopic,
+  ]{NotoSerifEthiopic}%
+}{%
+  \newfontfamily\tigrinyafont{Noto Serif Ethiopic}[Script=Ethiopic]%
+}

@@ -61,6 +61,23 @@
 \onehalfspacing
 
 % ---------------------------------------------------------------------
+%  Coupures de ligne et débordements (« Overfull \hbox »)
+%  ---------------------------------------------------------------------
+%  Les noms d'auteurs en petites capitales issus de biblatex (p. ex.
+%  « Schlechtweg ») et les liens hyperref ne se coupent pas toujours en
+%  fin de ligne, ce qui peut faire déborder le texte dans la marge.
+%  - \emergencystretch autorise TeX à relâcher l'espacement en dernier
+%    recours plutôt que de déborder ;
+%  - on autorise la césure à l'intérieur des liens hyperref (citations).
+\emergencystretch=3em
+\hfuzz=1pt
+\hbadness=1500
+% Autorise le retour à la ligne dans les hyperliens (citations, URL).
+\usepackage{etoolbox}
+\appto\UrlBreaks{\do\-}
+
+
+% ---------------------------------------------------------------------
 %  Titres et table des matières (réglages KOMA)
 % ---------------------------------------------------------------------
 \setcounter{tocdepth}{2}       % profondeur de la table des matières
@@ -76,6 +93,7 @@
   hidelinks,                   % pas de cadres colorés autour des liens
   pdfusetitle,                 % titre/auteur PDF depuis \title/\author
   bookmarksnumbered=true,
+  breaklinks=true,             % autorise un lien (citation, URL) à passer à la ligne
 ]{hyperref}
 
 % Signets PDF corrects même avec des caractères Unicode.
