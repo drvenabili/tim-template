@@ -24,14 +24,18 @@
 \addbibresource{biblio/references.bib}
 
 % ---------------------------------------------------------------------
-%  biblatex ne fournit pas de fichiers de localisation (.lbx) pour les
-%  langues arabe / chinois / japonais déclarées à polyglossia, d'où des
-%  avertissements « Language not supported ». Comme la bibliographie est
-%  rédigée en français, on mappe ces langues vers le français pour éviter
-%  ces avertissements (les écritures elles-mêmes sont gérées via \ar{}/\zh{}).
-\DeclareLanguageMapping{arabic}{french}
-\DeclareLanguageMapping{chinese}{french}
-\DeclareLanguageMapping{japanese}{french}
+%  Note : au chargement, biblatex peut émettre quelques avertissements
+%  « Language 'arabic'/'chinese'/'japanese' not supported » car il n'existe
+%  pas de fichier de localisation (.lbx) pour ces langues déclarées à
+%  polyglossia. Ces avertissements sont SANS CONSÉQUENCE : la bibliographie
+%  est en français et les rares champs en écriture non latine sont gérés à
+%  la main via \ar{} / \zh{} dans le fichier .bib.
+%
+%  IMPORTANT : ne PAS utiliser \DeclareLanguageMapping{chinese}{french}
+%  (etc.) pour masquer ces avertissements : combiné à \setotherlanguage
+%  {chinese}, cela casse la localisation française de biblatex (libellés
+%  « In »/« byeditor » en anglais et sans espace). On préfère donc laisser
+%  ces avertissements bénins.
 
 % ---------------------------------------------------------------------
 %  Réglages fins conseillés.

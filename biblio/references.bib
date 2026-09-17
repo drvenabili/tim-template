@@ -1,181 +1,266 @@
 % =====================================================================
 %  biblio/references.bib
-%  Références d'exemple, dont des entrées à titre NON LATIN (arabe,
-%  cyrillique, chinois) pour démontrer le tri et l'affichage corrects.
+%  ---------------------------------------------------------------------
+%  Références bibliographiques du modèle.
 %
-%  Astuce : le champ « langid » indique la langue de l'entrée à
-%  biblatex ; le champ « translit »/note peut porter une translittération.
+%  SOURCE : les entrées ci-dessous ont été récupérées telles quelles
+%  depuis l'ACL Anthology (fichiers .bib officiels de chaque article,
+%  https://aclanthology.org/…​.bib). Elles ne sont donc PAS inventées.
+%  Chaque entrée indique l'URL ACL Anthology d'origine.
+%
+%  Elles couvrent des travaux de membres du Département de traitement
+%  informatique multilingue (TIM) de la FTI : Perla Al Almaoui,
+%  Pierrette Bouillon, Simon Hengchen, Aurélie Picton, Lucía Morado
+%  Vázquez, etc.
+%
+%  À la fin du fichier figurent quelques entrées « démonstration » à
+%  titre NON LATIN (arabe, chinois, cyrillique), pour montrer que la
+%  bibliographie gère ces écritures. Celles-là sont des exemples et
+%  peuvent être supprimées.
 % =====================================================================
 
-@book{eco2003,
-  author    = {Eco, Umberto},
-  title      = {Dire presque la même chose},
-  subtitle   = {Expériences de traduction},
-  translator = {Bouzaher, Myriem},
-  year       = {2003},
-  publisher  = {Grasset},
-  location   = {Paris},
-  langid     = {french},
+@inproceedings{almaoui-etal-2025-arabizi,
+    title = "{A}rabizi vs {LLM}s: Can the Genie Understand the Language of Aladdin?",
+    author = "Al Almaoui, Perla  and
+      Bouillon, Pierrette  and
+      Hengchen, Simon",
+    editor = {Bouillon, Pierrette  and
+      Gerlach, Johanna  and
+      Girletti, Sabrina  and
+      Volkart, Lise  and
+      Rubino, Raphael  and
+      Sennrich, Rico  and
+      L{\"a}ubli, Samuel  and
+      Volk, Martin  and
+      Espl{\`a}-Gomis, Miquel  and
+      Vandeghinste, Vincent  and
+      Moniz, Helena  and
+      Szoc, Sara},
+    booktitle = "Proceedings of Machine Translation Summit XX: Volume 2",
+    month = jun,
+    year = "2025",
+    address = "Geneva, Switzerland",
+    publisher = "European Association for Machine Translation",
+    url = "https://aclanthology.org/2025.mtsummit-2.4/",
+    pages = "28--41",
+    ISBN = "978-2-9701897-1-8"
 }
 
-@article{toury1995,
-  author    = {Toury, Gideon},
-  title     = {The Nature and Role of Norms in Translation},
-  journaltitle = {Descriptive Translation Studies and Beyond},
-  year      = {1995},
-  pages     = {53--69},
-  publisher = {John Benjamins},
-  location  = {Amsterdam},
-  langid    = {english},
+@inproceedings{mutal-etal-2026-aladdin,
+    title = "Aladdin-{FTI} @ {AMIYA} Three Wishes for {A}rabic {NLP}: Fidelity, Diglossia, and Multidialectal Generation",
+    author = "Mutal, Jonathan  and
+      Al Almaoui, Perla  and
+      Hengchen, Simon  and
+      Bouillon, Pierrette",
+    editor = {Scherrer, Yves  and
+      Aepli, No{\"e}mi  and
+      Blaschke, Verena  and
+      Jauhiainen, Tommi  and
+      Ljube{\v{s}}i{\'c}, Nikola  and
+      Nakov, Preslav  and
+      Tiedemann, J{\"o}rg  and
+      Zampieri, Marcos},
+    booktitle = "Proceedings of the 13th Workshop on {NLP} for Similar Languages, Varieties and Dialects",
+    month = mar,
+    year = "2026",
+    address = "Rabat, Morocco",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2026.vardial-1.27/",
+    doi = "10.18653/v1/2026.vardial-1.27",
+    pages = "339--351"
 }
 
-% --- Entrée en cyrillique (russe) ------------------------------------
+% ---------------------------------------------------------------------
+%  Pierrette Bouillon — traduction de la parole en santé (BabelDr),
+%  pictogrammes, terminologie
+% ---------------------------------------------------------------------
+@inproceedings{bouillon-etal-2021-speech,
+    title = "A Speech-enabled Fixed-phrase Translator for Healthcare Accessibility",
+    author = "Bouillon, Pierrette  and
+      Gerlach, Johanna  and
+      Mutal, Jonathan  and
+      Tsourakis, Nikos  and
+      Spechbach, Herv{\'e}",
+    editor = "Field, Anjalie  and
+      Prabhumoye, Shrimai  and
+      Sap, Maarten  and
+      Jin, Zhijing  and
+      Zhao, Jieyu  and
+      Brockett, Chris",
+    booktitle = "Proceedings of the 1st Workshop on NLP for Positive Impact",
+    month = aug,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.nlp4posimpact-1.15/",
+    doi = "10.18653/v1/2021.nlp4posimpact-1.15",
+    pages = "135--142"
+}
+
+@inproceedings{gerlach-etal-2024-concept,
+    title = "A Concept Based Approach for Translation of Medical Dialogues into Pictographs",
+    author = "Gerlach, Johanna  and
+      Bouillon, Pierrette  and
+      Mutal, Jonathan  and
+      Spechbach, Herv{\'e}",
+    editor = "Calzolari, Nicoletta  and
+      Kan, Min-Yen  and
+      Hoste, Veronique  and
+      Lenci, Alessandro  and
+      Sakti, Sakriani  and
+      Xue, Nianwen",
+    booktitle = "Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024)",
+    month = may,
+    year = "2024",
+    address = "Torino, Italia",
+    publisher = "ELRA and ICCL",
+    url = "https://aclanthology.org/2024.lrec-main.21/",
+    pages = "233--242"
+}
+
+% ---------------------------------------------------------------------
+%  Aurélie Picton — terminologie, sémantique lexicale
+% ---------------------------------------------------------------------
+@inproceedings{bouillon-etal-2012-annotating,
+    title = "Annotating Qualia Relations in {I}talian and {F}rench Complex Nominals",
+    author = "Bouillon, Pierrette  and
+      Jezek, Elisabetta  and
+      Melloni, Chiara  and
+      Picton, Aur{\'e}lie",
+    editor = "Calzolari, Nicoletta  and
+      Choukri, Khalid  and
+      Declerck, Thierry  and
+      Do{\u{g}}an, Mehmet U{\u{g}}ur  and
+      Maegaard, Bente  and
+      Mariani, Joseph  and
+      Moreno, Asuncion  and
+      Odijk, Jan  and
+      Piperidis, Stelios",
+    booktitle = "Proceedings of the Eighth International Conference on Language Resources and Evaluation ({LREC}'12)",
+    month = may,
+    year = "2012",
+    address = "Istanbul, Turkey",
+    publisher = "European Language Resources Association (ELRA)",
+    url = "https://aclanthology.org/L12-1259/",
+    pages = "1527--1532"
+}
+
+% ---------------------------------------------------------------------
+%  Lucía Morado Vázquez — localisation, mémoires de traduction
+% ---------------------------------------------------------------------
+@inproceedings{morado-vazquez-etal-2013-comparing,
+    title = "Comparing Forum Data Post-Editing Performance Using Translation Memory and Machine Translation Output: A Pilot Study",
+    author = "Morado Vazquez, Lucia  and
+      Rodriguez Vazquez, Silvia  and
+      Bouillon, Pierrette",
+    editor = "Way, Andy  and
+      Sima{'}an, Khalil  and
+      Forcada, Mikel L.",
+    booktitle = "Proceedings of Machine Translation Summit XIV: Posters",
+    month = sep,
+    year = "2013",
+    address = "Nice, France",
+    url = "https://aclanthology.org/2013.mtsummit-posters.7/"
+}
+
+% ---------------------------------------------------------------------
+%  Simon Hengchen — changement sémantique, humanités numériques
+% ---------------------------------------------------------------------
+@inproceedings{schlechtweg-etal-2020-semeval,
+    title = "{S}em{E}val-2020 Task 1: Unsupervised Lexical Semantic Change Detection",
+    author = "Schlechtweg, Dominik  and
+      McGillivray, Barbara  and
+      Hengchen, Simon  and
+      Dubossarsky, Haim  and
+      Tahmasebi, Nina",
+    editor = "Herbelot, Aurelie  and
+      Zhu, Xiaodan  and
+      Palmer, Alexis  and
+      Schneider, Nathan  and
+      May, Jonathan  and
+      Shutova, Ekaterina",
+    booktitle = "Proceedings of the Fourteenth Workshop on Semantic Evaluation",
+    month = dec,
+    year = "2020",
+    address = "Barcelona (online)",
+    publisher = "International Committee for Computational Linguistics",
+    url = "https://aclanthology.org/2020.semeval-1.1/",
+    doi = "10.18653/v1/2020.semeval-1.1",
+    pages = "1--23"
+}
+
+@inproceedings{perrone-etal-2019-gasc,
+    title = "{GASC}: Genre-Aware Semantic Change for {A}ncient {G}reek",
+    author = "Perrone, Valerio  and
+      Palma, Marco  and
+      Hengchen, Simon  and
+      Vatri, Alessandro  and
+      Smith, Jim Q.  and
+      McGillivray, Barbara",
+    editor = "Tahmasebi, Nina  and
+      Borin, Lars  and
+      Jatowt, Adam  and
+      Xu, Yang",
+    booktitle = "Proceedings of the 1st International Workshop on Computational Approaches to Historical Language Change",
+    month = aug,
+    year = "2019",
+    address = "Florence, Italy",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/W19-4707/",
+    doi = "10.18653/v1/W19-4707",
+    pages = "56--66"
+}
+
+% =====================================================================
+%  ENTRÉES DE DÉMONSTRATION — écritures non latines
+%  ---------------------------------------------------------------------
+%  Exemples pour montrer l'affichage/tri d'entrées à titre non latin
+%  dans la bibliographie. La police latine par défaut ne possède pas ces
+%  glyphes : on encapsule donc les champs concernés avec les commandes
+%  de bascule de police du modèle (\ar{}, \zh{} — voir config/langues.tex).
+%  Supprimez ces entrées si vous n'en avez pas besoin.
+% =====================================================================
+
 @book{barhudarov1975,
   author    = {Бархударов, Леонид Степанович},
-  title      = {Язык и перевод},
-  subtitle   = {Вопросы общей и частной теории перевода},
-  year       = {1975},
-  publisher  = {Международные отношения},
-  location   = {Москва},
-  langid     = {french},
-  note       = {Trad. du titre : « Langue et traduction »},
+  title     = {Язык и перевод},
+  subtitle  = {Вопросы общей и частной теории перевода},
+  year      = {1975},
+  publisher = {Международные отношения},
+  location  = {Москва},
+  langid    = {russian},
+  note      = {Leonid Stepanovitch Barkhoudarov, \emph{La langue et la traduction}},
 }
 
-% --- Entrée en chinois -----------------------------------------------
-%  Remarque : la bibliographie utilise la police principale (latine).
-%  Pour que les titres/auteurs en écriture chinoise ou arabe s'affichent,
-%  on encapsule ces champs avec les commandes de bascule de police du
-%  modèle (\zh{}, \ar{} — définies dans config/langues.tex). Les accolades
-%  supplémentaires {…} protègent la virgule éventuelle dans les noms.
-@book{luxun1932,
-  author    = {{\zh{魯迅}}},
-  title     = {\zh{翻譯論集}},
-  year      = {1932},
-  publisher = {\zh{商務印書館}},
+@book{xietianzhen1999,
+  author    = {{\zh{谢天振}}},
+  title     = {\zh{译介学}},
+  year      = {1999},
+  publisher = {\zh{上海外语教育出版社}},
   location  = {\zh{上海}},
-  langid    = {french},
-  note      = {Lu Xun, recueil d'essais sur la traduction},
+  langid    = {chinese},
+  note      = {Xie Tianzhen, \emph{théorie de la traduction et des échanges interculturels}},
 }
 
-% --- Entrée en arabe -------------------------------------------------
 @book{aljahiz,
   author    = {{\ar{الجاحظ، عمرو بن بحر}}},
   title     = {\ar{كتاب الحيوان}},
   year      = {2003},
   publisher = {\ar{دار الكتب العلمية}},
   location  = {\ar{بيروت}},
-  langid    = {french},
+  langid    = {arabic},
   note      = {Al-Jāḥiẓ, \emph{Kitāb al-Ḥayawān}},
 }
 
-@online{unige_charte,
-  author    = {{Université de Genève, Service de communication}},
-  title     = {Charte graphique — Couleurs institutionnelles},
-  year      = {2023},
-  url       = {https://www.unige.ch/communication/publier/charte/couleurs},
-  urldate   = {2024-01-01},
-  langid    = {french},
-}
-
-% =====================================================================
-%  TRAVAUX DE MEMBRES DU DÉPARTEMENT TIM (FTI, UNIGE)
-%  Exemples réels pour amorcer la bibliographie. Vérifiez et complétez
-%  les champs (pages, DOI, éditeur) selon vos besoins.
-% =====================================================================
-
-% --- Perla Al Almaoui, Pierrette Bouillon, Simon Hengchen -----------
-@inproceedings{alalmaoui2025arabizi,
-  author    = {Al Almaoui, Perla and Bouillon, Pierrette and Hengchen, Simon},
-  title     = {Arabizi vs {LLMs}: Can the Genie Understand the Language
-               of {Aladdin}?},
-  booktitle = {Proceedings of Machine Translation Summit XX, Volume 2},
-  year      = {2025},
-  pages     = {28--41},
-  publisher = {European Association for Machine Translation},
-  location  = {Geneva, Switzerland},
-  langid    = {english},
-}
-
-@inproceedings{mutal2026aladdin,
-  author    = {Mutal, Jonathan and Al Almaoui, Perla and Hengchen, Simon
-               and Bouillon, Pierrette},
-  title     = {{Aladdin-FTI} @ {AMIYA} Three Wishes for {Arabic} {NLP}:
-               Fidelity, Diglossia, and Multidialectal Generation},
-  booktitle = {Proceedings of the 13th Workshop on NLP for Similar
-               Languages, Varieties and Dialects (VarDial)},
-  year      = {2026},
-  pages     = {339--351},
-  location  = {Rabat, Morocco},
-  langid    = {english},
-}
-
-@phdthesis{alalmaoui2024memoire,
-  author    = {Al Almaoui, Perla},
-  title     = {{ChatGPT} comme outil de traduction automatique des
-               discussions {WhatsApp} : évaluation de la traduction de
-               différents dialectes en {Arabizi}},
-  type      = {Mémoire de maîtrise},
-  institution = {Université de Genève, Faculté de traduction et
-               d'interprétation},
-  year      = {2024},
-  langid    = {french},
-}
-
-% --- Pierrette Bouillon (traduction de la parole, BabelDr) -----------
-@article{bouillon2021babeldr,
-  author    = {Bouillon, Pierrette and Gerlach, Johanna and Spechbach,
-               Hervé and Tsourakis, Nikolaos and Halimi Mallem, Ismahene},
-  title     = {{BabelDr} : un traducteur médical fiable fondé sur des
-               phrases préétablies pour la communication avec les patients
-               allophones},
-  journaltitle = {Revue Tranel},
-  year      = {2021},
-  langid    = {french},
-}
-
-% --- Simon Hengchen (changement sémantique, humanités numériques) ----
-@book{tahmasebi2021semanticchange,
-  editor    = {Tahmasebi, Nina and Borin, Lars and Jatowt, Adam and Xu,
-               Yang and Hengchen, Simon},
-  title     = {Computational Approaches to Semantic Change},
-  year      = {2021},
-  publisher = {Language Science Press},
-  location  = {Berlin},
-  doi       = {10.5281/zenodo.5040241},
-  langid    = {english},
-}
-
-@inproceedings{schlechtweg2020semeval,
-  author    = {Schlechtweg, Dominik and McGillivray, Barbara and Hengchen,
-               Simon and Dubossarsky, Haim and Tahmasebi, Nina},
-  title     = {{SemEval-2020} Task 1: Unsupervised Lexical Semantic Change
-               Detection},
-  booktitle = {Proceedings of the 14th International Workshop on Semantic
-               Evaluation (SemEval)},
-  year      = {2020},
-  location  = {Barcelona, Spain},
-  publisher = {Association for Computational Linguistics},
-  langid    = {english},
-}
-
-% --- Aurélie Picton (terminologie, variation, diachronie) ------------
-@article{humbertdroz2022higgs,
-  author    = {Humbert-Droz, Julie and Picton, Aurélie},
-  title     = {Du {Higgs} à la particule de {Dieu} : une analyse de la
-               variation terminologique dans un contexte de
-               déterminologisation},
-  journaltitle = {SHS Web of Conferences (Congrès Mondial de Linguistique
-               Française)},
-  year      = {2022},
-  langid    = {french},
-}
-
-% --- Lucía Morado Vázquez (localisation, standards, XLIFF) -----------
-@article{morado2020xliff,
-  author    = {Morado Vázquez, Lucía and Filip, David},
-  title     = {{XLIFF} et les standards de la localisation :
-               enseignement et pratique},
-  journaltitle = {The Journal of Internationalization and Localization},
-  year      = {2020},
-  langid    = {french},
+@book{dionysiusthraxtechne,
+  author    = {{Διονύσιος ὁ Θρᾷξ}},
+  title     = {Τέχνη γραμματική},
+  editor    = {Uhlig, Gustav},
+  series    = {Grammatici Graeci},
+  volume    = {1.1},
+  address   = {Lipsiae},
+  publisher = {B. G. Teubner},
+  year      = {1883},
+  langid    = {grek},
+  note      = {Dionysus Thrax, \emph{Art grammatical}},
 }
