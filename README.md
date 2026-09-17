@@ -13,9 +13,10 @@ multilingue (TIM), Université de Genève.
 > XeLaTeX*.
 >
 > Le bouton pointe vers l'archive `These-UNIGE-FTI.zip` de la **dernière
-> release** GitHub (générée automatiquement, voir
-> `.github/workflows/release-zip.yml`). Il ne fonctionnera donc qu'après
-> la publication d'une première release. Tant qu'aucune release n'existe,
+> release** GitHub. Il ne fonctionnera donc qu'après la publication d'une
+> première release — voir la section
+> [« Publier une nouvelle version »](#publier-une-nouvelle-version-release-github)
+> (un clic depuis l'onglet Actions). Tant qu'aucune release n'existe,
 > utilisez l'archive de la branche :
 > `…/docs?engine=xelatex&snip_uri=https://github.com/drvenabili/tim-template/archive/refs/heads/main.zip`
 > (le projet s'appellera alors « main » ; renommez-le en un clic dans
@@ -68,6 +69,7 @@ Mono**. Les écritures non latines utilisent :
 | Arabe    | Noto Naskh Arabic |
 | Chinois  | Noto Serif CJK SC |
 | Japonais | Noto Serif CJK JP |
+| Tigrinya (guèze) | Noto Serif Ethiopic |
 | Grec / Cyrillique | Noto Serif |
 
 ### Cas particulier : systèmes à « polices variables »
@@ -112,11 +114,37 @@ committez pas.
 sudo dnf install texlive-scheme-medium texlive-polyglossia \
      texlive-biblatex biber texlive-koma-script texlive-microtype \
      google-noto-serif-fonts google-noto-sans-fonts \
-     google-noto-naskh-arabic-fonts google-noto-serif-cjk-fonts
+     google-noto-naskh-arabic-fonts google-noto-serif-cjk-fonts \
+     google-noto-serif-ethiopic-fonts google-noto-sans-ethiopic-fonts
 ```
+
+> Note : installez bien les paquets de polices **sans** le suffixe `-vf-`
+> (versions statiques). Les versions variables (`…-vf-fonts`) ne peuvent
+> pas être embarquées par XeLaTeX (`xdvipdfmx: Invalid font`). C'est
+> notamment le cas pour l'éthiopien (tigrinya) :
+> `google-noto-serif-ethiopic-fonts`, pas `…-ethiopic-vf-fonts`.
 
 (`texlive-microtype` est facultatif : le modèle ne le charge que s'il est
 présent.)
+
+## Publier une nouvelle version (release GitHub)
+
+Le bouton **Open in Overleaf** pointe vers l'archive `These-UNIGE-FTI.zip`
+de la **dernière release**. Pour créer/mettre à jour cette archive en un
+clic :
+
+1. Onglet **Actions** du dépôt GitHub.
+2. Workflow **« Release Overleaf zip »** → bouton **« Run workflow »**.
+3. Saisir le **tag** (ex. `v1.1`), éventuellement un titre et des notes,
+   puis **Run workflow**.
+
+Le workflow (`.github/workflows/release-zip.yml`) construit l'archive
+(en excluant `.git`, les polices lourdes et les artefacts LaTeX), crée le
+tag et la release, puis y attache `These-UNIGE-FTI.zip`. Le bouton
+*Open in Overleaf* utilise alors automatiquement cette nouvelle version.
+
+> Le workflow échoue volontairement si le tag existe déjà (pour ne pas
+> écraser une release). Choisissez un nouveau numéro de version.
 
 ## Structure du projet
 

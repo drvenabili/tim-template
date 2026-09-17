@@ -1,32 +1,61 @@
 name: Release Overleaf zip
 
-# Construit une archive « These-UNIGE-FTI.zip » et l'attache à la release.
+# Bouton « Run workflow » (onglet Actions) qui, en un clic :
+#   1. construit l'archive « These-UNIGE-FTI.zip » ;
+#   2. crée le tag + la release GitHub ;
+#   3. attache l'archive à la release.
 # Le nom de l'archive détermine le nom du projet lors de l'import Overleaf
-# (bouton « Open in Overleaf »).
+# (bouton « Open in Overleaf » du README).
 
 on:
-  release:
-    types: [created, edited]
-  # Permet aussi un déclenchement manuel depuis l'onglet Actions.
   workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag de la release (ex. v1.1)"
+        required: true
+        type: string
+      title:
+        description: "Titre de la release (optionnel ; défaut = tag)"
+        required: false
+        type: string
+      notes:
+        description: "Notes de version (optionnel)"
+        required: false
+        type: string
+        default: "Modèle de thèse FTI/TIM — nouvelle version."
 
 permissions:
   contents: write
 
 jobs:
-  build-zip:
+  build-and-release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Vérifier que le tag n'existe pas déjà
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eu
+          if gh release view "${{ inputs.tag }}" >/dev/null 2>&1; then
+            echo "::error::La release ${{ inputs.tag }} existe déjà. Choisissez un autre tag."
+            exit 1
+          fi
+          if git rev-parse "${{ inputs.tag }}" >/dev/null 2>&1; then
+            echo "::error::Le tag ${{ inputs.tag }} existe déjà. Choisissez un autre tag."
+            exit 1
+          fi
 
       - name: Construire l'archive nommée
         run: |
           set -eux
           STAGE="These-UNIGE-FTI"
           mkdir -p "$STAGE"
-          # Copie tout le contenu utile du dépôt dans un dossier nommé,
-          # en excluant git, l'archive elle-même et les polices lourdes.
+          # Copie le contenu utile du dépôt dans un dossier nommé, en
+          # excluant git, l'archive elle-même, les polices lourdes et les
+          # artefacts LaTeX.
           rsync -a \
             --exclude='.git' \
             --exclude='.github' \
@@ -40,22 +69,21 @@ jobs:
             --exclude='these.out' --exclude='these.run.xml' --exclude='these.synctex.gz' \
             --exclude='these.toc' --exclude='these.xdv' \
             ./ "$STAGE/"
-          # (On conserve le logo PDF : réintégré explicitement.)
+          # On conserve le logo (vectoriel) : réintégré explicitement.
           mkdir -p "$STAGE/ressources"
           cp -f ressources/logo-unige.pdf "$STAGE/ressources/" || true
           cp -f ressources/logo-unige.svg "$STAGE/ressources/" || true
           zip -r "These-UNIGE-FTI.zip" "$STAGE"
           ls -la "These-UNIGE-FTI.zip"
 
-      - name: Attacher l'archive à la release
-        if: github.event_name == 'release'
-        uses: softprops/action-gh-release@v2
-        with:
-          files: These-UNIGE-FTI.zip
-
-      - name: Publier l'archive comme artefact (déclenchement manuel)
-        if: github.event_name == 'workflow_dispatch'
-        uses: actions/upload-artifact@v4
-        with:
-          name: These-UNIGE-FTI
-          path: These-UNIGE-FTI.zip
+      - name: Créer la release et attacher l'archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eu
+          TITLE="${{ inputs.title }}"
+          [ -z "$TITLE" ] && TITLE="${{ inputs.tag }}"
+          gh release create "${{ inputs.tag }}" These-UNIGE-FTI.zip \
+            --target "${{ github.sha }}" \
+            --title "$TITLE" \
+            --notes "${{ inputs.notes }}"
