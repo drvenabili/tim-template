@@ -1,24 +1,58 @@
 % =====================================================================
 %  config/biblio.tex
 %  Bibliographie avec biblatex + biber (compatible Unicode/multilingue).
-%  Style : auteur-date, courant en traductologie et sciences humaines.
+%
+%  STYLE : APA 7e édition (auteur-date).
+%  ---------------------------------------------------------------------
+%  La FTI n'impose PAS un style unique : l'aide-mémoire des mémoires de
+%  maîtrise (MA traduction / MATECH) précise que « les citations et
+%  références suivent les consignes de votre unité ou de votre jury »
+%  et que la présentation formelle est fixée « par votre directeur ou
+%  directrice de mémoire ». Le format attendu est de type AUTEUR-DATE.
+%
+%  Pour le Département TIM (technologies de la traduction, TAL), le choix
+%  par défaut retenu ici est APA 7 (auteur-date), qui est aussi la norme
+%  de référence à l'échelle de l'UNIGE. Il se charge via « biblatex-apa »
+%  (présent sur Overleaf et dans une installation TeX Live complète).
+%
+%  ROBUSTESSE : si « biblatex-apa » n'est pas installé (sous-ensemble
+%  TeX Live minimal), on retombe automatiquement sur le style natif
+%  « authoryear », lui aussi auteur-date. Le document compile donc partout.
 % =====================================================================
 
-\usepackage[
-  backend=biber,          % biber : gère l'UTF-8 et le tri multilingue
-  style=authoryear,       % (auteur, année)
-  sorting=nyt,            % tri : nom, année, titre
-  sortlocale=fr_FR,       % tri respectant les règles françaises
-  language=french,        % langue de la bibliographie (libellés « In », etc.)
-  autolang=none,          % pas de bascule auto : on gère les écritures non
-                          % latines à la main via \ar{}, \zh{} (voir .bib).
-                          % Évite les avertissements « Language not supported ».
-  maxbibnames=99,         % liste tous les auteurs dans la bibliographie
-  maxcitenames=2,         % « et al. » au-delà de 2 auteurs dans le texte
-  giveninits=true,        % initiales des prénoms
-  uniquename=init,
-  doi=true, isbn=false, url=true,
-]{biblatex}
+\usepackage{csquotes} % requis par biblatex ; sûr même si déjà chargé
+
+\IfFileExists{apa7.bbx}{%
+  % ---- Style APA 7 (préféré) ----------------------------------------
+  \usepackage[
+    backend=biber,
+    style=apa,            % APA 7e édition (biblatex-apa)
+    sortlocale=fr_FR,
+    language=french,
+    apamaxprtauth=99,     % liste tous les auteurs dans la référence
+  ]{biblatex}
+  % Localisation française des mentions APA (« et al. », « & », etc.).
+  \DeclareLanguageMapping{french}{french-apa}
+}{%
+  % ---- Repli : style auteur-date natif ------------------------------
+  \usepackage[
+    backend=biber,
+    style=authoryear,
+    sorting=nyt,
+    sortlocale=fr_FR,
+    language=french,
+    autolang=none,
+    maxbibnames=99,
+    maxcitenames=2,
+    giveninits=true,
+    uniquename=init,
+    doi=true, isbn=false, url=true,
+  ]{biblatex}
+  \PackageWarning{config/biblio}{%
+    biblatex-apa introuvable : repli sur le style « authoryear ».
+    Sur Overleaf / TeX Live complet, APA 7 sera utilisé automatiquement.%
+  }
+}
 
 % Fichier de références.
 \addbibresource{biblio/references.bib}
@@ -33,16 +67,4 @@
 %
 %  IMPORTANT : ne PAS utiliser \DeclareLanguageMapping{chinese}{french}
 %  (etc.) pour masquer ces avertissements : combiné à \setotherlanguage
-%  {chinese}, cela casse la localisation française de biblatex (libellés
-%  « In »/« byeditor » en anglais et sans espace). On préfère donc laisser
-%  ces avertissements bénins.
-
-% ---------------------------------------------------------------------
-%  Réglages fins conseillés.
-% ---------------------------------------------------------------------
-% Guillemets français autour des titres d'articles (via csquotes).
-\DeclareFieldFormat[article,inbook,incollection,inproceedings]{title}%
-  {\enquote{#1}}
-
-% Espace insécable avant les deux-points, etc. : géré par polyglossia
-% (langue française) — rien à faire ici.
+%  {chinese}, cela casse la localisation française de biblatex.
