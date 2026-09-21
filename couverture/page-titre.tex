@@ -62,16 +62,15 @@
 \vspace{1.4cm}
 
 % --- Direction et jury ----------------------------------------------
-%  On évite \begin{tabular} ici : le paquet bidi (chargé par polyglossia
-%  pour l'arabe) patche tabular et peut provoquer une « Undefined control
-%  sequence » selon la version de TeX Live. On utilise donc un simple
-%  alignement par \makebox.
+%  Bloc centré comme un tout, aligné à gauche à l'intérieur, intitulés en
+%  gras. Les membres du jury (séparés par \\ dans \ThesisJury) sont empilés
+%  dans une sous-colonne alignée en haut. Les tableaux fonctionnent grâce au
+%  shim \UseMathForPositioningText de config/preambule.tex (compat. bidi).
 {\normalsize
-  \makebox[0pt][r]{Directrice/Directeur de thèse :\hspace{1em}}%
-  \ThesisSupervisor\par
-  \vspace{2pt}%
-  \makebox[0pt][r]{Membres du jury :\hspace{1em}}%
-  \ThesisJury\par}
+  \begin{tabular}{@{}r@{\hspace{1.5em}}l@{}}
+    \bfseries Direction & \ThesisSupervisor \\[0.5em]
+    \bfseries Jury      & \begin{tabular}[t]{@{}l@{}}\ThesisJury\end{tabular} \\
+  \end{tabular}\par}
 
 \vfill
 

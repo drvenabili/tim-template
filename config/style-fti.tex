@@ -80,3 +80,58 @@
 \newcommand{\ftirule}[1][\linewidth]{%
   {\color{accent}\rule{#1}{1.2pt}}%
 }
+
+% ---------------------------------------------------------------------
+%  Affichage de code LaTeX (pour la partie « mode d'emploi » du modèle).
+%  Environnement « latexcode » : encadré léger, police à chasse fixe,
+%  coloration discrète des commandes. Repose sur listings.
+% ---------------------------------------------------------------------
+\usepackage{listings}
+% Compatibilité KOMA-Script + listings : sans le paquet « scrhack », KOMA
+% enregistre « lstlisting » comme flottant et référence des macros non
+% définies (\scr@tso@lstlisting@linefill, etc.). On les neutralise.
+\makeatletter
+\providecommand*{\scr@tso@lstlisting@linefill}{}
+\providecommand*{\scr@tso@lstlisting@pagenumberformat}{}
+\providecommand*{\scr@tso@lstlisting@entrynumberformat}{}
+\providecommand*{\scr@tso@lstlisting@numberentryformat}{}
+\providecommand*{\scr@tso@lstlisting@numentrytext}{}
+\makeatother
+\definecolor{codebg}{HTML}{F7F7F7}
+\definecolor{codecmd}{HTML}{CF0063}   % commandes en rouge institutionnel
+\definecolor{codecomment}{HTML}{6E7781}
+\lstdefinestyle{fti-latex}{
+  language        = [LaTeX]TeX,
+  basicstyle      = \ttfamily\small,
+  keywordstyle    = \color{codecmd}\bfseries,
+  commentstyle    = \color{codecomment}\itshape,
+  backgroundcolor = \color{codebg},
+  frame           = leftline,
+  framerule       = 1.2pt,
+  rulecolor       = \color{accent},
+  xleftmargin     = 1em,
+  framexleftmargin= 1em,
+  aboveskip       = \medskipamount,
+  belowskip       = \medskipamount,
+  breaklines      = true,
+  breakatwhitespace = true,
+  columns         = fullflexible,
+  keepspaces      = true,
+  showstringspaces= false,
+  upquote         = true,
+  % Les caractères non latins des exemples ne doivent pas casser listings :
+  extendedchars   = true,
+  literate        =
+    {é}{{\'e}}1 {è}{{\`e}}1 {ê}{{\^e}}1 {à}{{\`a}}1 {ç}{{\c c}}1
+    {É}{{\'E}}1 {È}{{\`E}}1 {ù}{{\`u}}1 {û}{{\^u}}1 {î}{{\^\i}}1
+    {ï}{{\"\i}}1 {ô}{{\^o}}1 {œ}{{\oe}}1 {«}{{\guillemotleft}}1
+    {»}{{\guillemotright}}1,
+}
+\lstset{style=fti-latex}
+
+% Raccourci : environnement « latexcode » pour afficher un extrait LaTeX.
+\lstnewenvironment{latexcode}{}{}
+
+% Commande en ligne pour un bout de code court : \code{\section{...}}.
+% \detokenize imprime les tokens littéralement, sans exécuter les commandes.
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}

@@ -1,44 +1,81 @@
 % =====================================================================
 %  corps/02-exemples-multilingues.tex
-%  Chapitre vitrine : démonstration du support Unicode multi-écritures.
+%  Chapitre vitrine + MODE D'EMPLOI : chaque fonctionnalité est présentée
+%  avec son code source (environnement « latexcode ») puis son rendu.
 % =====================================================================
-\chapter{Exemples multilingues}
+\chapter{Exemples multilingues et mode d'emploi}
 \label{chap:exemples}
 
-Ce chapitre illustre l'insertion de texte dans différentes écritures.
-Chaque langue secondaire a été pré-configurée dans
-\texttt{config/langues.tex} avec sa police adéquate
-(\texttt{config/polices.tex}).
+Ce chapitre illustre l'insertion de texte dans différentes écritures et
+sert en même temps de \emph{mode d'emploi} : pour chaque fonctionnalité,
+le code source est affiché, suivi de son rendu. Chaque langue secondaire
+est pré-configurée dans \code{config/langues.tex} avec sa police adéquate
+(\code{config/polices.tex}).
 
 % ---------------------------------------------------------------------
 \section{Fragments courts en ligne}
 
-On peut insérer un mot ou une expression à l'aide des commandes de
-confort définies dans le modèle :
+Le modèle définit des commandes de confort pour insérer un mot ou une
+expression dans une écriture donnée. On les utilise ainsi (remplacez le
+texte entre accolades par votre contenu dans l'écriture voulue) :
+
+\begin{latexcode}
+Arabe    : \ar{ ... texte arabe ... }      % droite à gauche
+Russe    : \ru{ ... texte russe ... }
+Chinois  : \zh{ ... texte chinois ... }
+Japonais : \ja{ ... texte japonais ... }
+Grec     : \gr{ ... texte grec ... }
+Tigrinya : \ti{ ... texte tigrinya ... }
+\end{latexcode}
+
+\noindent Rendu (avec du vrai texte) :
 
 \begin{itemize}
-  \item Arabe : \ar{مرحبا بالعالم} (hello world)
+  \item Arabe : \ar{مرحبا بالعالم}
   \item Russe : \ru{Здравствуй, мир}
   \item Chinois : \zh{你好，世界}
   \item Japonais : \ja{こんにちは世界}
   \item Grec : \gr{Γειά σου, κόσμε}
-  \item Tigrinya: \ti{ሰላም ዓለም}
+  \item Tigrinya : \ti{ሰላም ዓለም}
 \end{itemize}
 
-Ces fragments cohabitent sans difficulté dans un paragraphe français,
-y compris pour une langue de droite à gauche comme l'arabe
-\ar{النص العربي} qui reprend ensuite le fil du texte français.
+Ces fragments cohabitent sans difficulté dans un paragraphe français, y
+compris pour une langue de droite à gauche. Par exemple, le code
+
+\begin{latexcode}
+comme l'arabe \ar{ ... } qui reprend ensuite le fil du texte.
+\end{latexcode}
+
+\noindent produit : comme l'arabe \ar{النص العربي} qui reprend ensuite le
+fil du texte français.
 
 % ---------------------------------------------------------------------
 \section{Passages longs (environnements)}
 
-Pour un passage plus long, on utilise l'environnement de la langue,
-qui gère la césure et la direction du texte.
+Pour un passage plus long, on utilise l'environnement de la langue, qui
+gère la césure et la direction du texte. La syntaxe générale est :
+
+\begin{latexcode}
+\begin{Arabic}
+  ... votre paragraphe en arabe ...
+\end{Arabic}
+
+\begin{russian}
+  ... votre paragraphe en russe ...
+\end{russian}
+\end{latexcode}
+
+\begin{quote}\small
+\textbf{Attention.} L'environnement arabe s'écrit avec une \emph{majuscule}
+(\code{Arabic}) pour éviter un conflit avec la commande \code{\arabic} de
+LaTeX. Les autres s'écrivent en minuscules (\code{russian}, \code{chinese},
+\code{japanese}, \code{greek}).
+\end{quote}
 
 \subsection{Arabe (droite à gauche)}
 
 Un paragraphe complet en arabe est justifié et aligné à droite, avec un
-ordre des lignes et une césure corrects (paquet \texttt{bidi}) :
+ordre des lignes et une césure corrects (paquet \code{bidi}) :
 
 \begin{Arabic}
 تُسَاعِدُ اللُّغَاتُ المُخْتَلِفَةُ عَلَى التَّوَاصُلِ بَيْنَ النَّاسِ وَالثَّقَافَاتِ. وَمَعَ تَطَوُّرِ التِّقْنِيَاتِ الرَّقْمِيَّةِ، أَصْبَحَ مِنَ السَّهْلِ كِتَابَةُ النُّصُوصِ وَقِرَاءَتُهَا بِأَحْرُفٍ وَاتِّجَاهَاتٍ مُخْتَلِفَةٍ. وَيُسَاعِدُ دَعْمُ النُّصُوصِ مِنَ الْيَمِينِ إِلَى الْيَسَارِ عَلَى عَرْضِ اللُّغَةِ الْعَرَبِيَّةِ بِشَكْلٍ وَاضِحٍ وَطَبِيعِيٍّ.
@@ -70,7 +107,30 @@ ordre des lignes et une césure corrects (paquet \texttt{bidi}) :
 \end{greek}
 
 % ---------------------------------------------------------------------
-\section{Tableau bilingue}
+\section{Tableaux (booktabs)}
+
+Les tableaux se composent avec \code{booktabs} (filets \code{\toprule},
+\code{\midrule}, \code{\bottomrule}) et \code{tabularx} (colonne \code{X}
+de largeur automatique). Ils acceptent les commandes multilingues :
+
+\begin{latexcode}
+\begin{table}[htbp]
+  \centering
+  \begin{tabularx}{\linewidth}{@{}l X@{}}
+    \toprule
+    \textbf{Langue} & \textbf{« traduction »} \\
+    \midrule
+    Français & traduction \\
+    Arabe    & \ar{ ... } \\
+    Chinois  & \zh{ ... } \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Légende du tableau.}
+  \label{tab:traduction}
+\end{table}
+\end{latexcode}
+
+\noindent Rendu :
 
 \begin{table}[htbp]
   \centering
@@ -92,12 +152,28 @@ ordre des lignes et une césure corrects (paquet \texttt{bidi}) :
 \end{table}
 
 % ---------------------------------------------------------------------
-\section{Notes et citations multilingues}
+\section{Notes de bas de page et citations}
 
-Une note de bas de page peut elle aussi contenir plusieurs
+Une note de bas de page s'insère avec \code{\footnote{...}} et peut, elle
+aussi, contenir plusieurs écritures :
+
+\begin{latexcode}
+... plusieurs écritures.\footnote{Arabe \ar{ ... }, russe \ru{ ... }.}
+\end{latexcode}
+
+\noindent Rendu : une note peut contenir plusieurs
 écritures.\footnote{Exemple : arabe \ar{هامش}, russe \ru{сноска},
 chinois \zh{脚注}, japonais \ja{脚注}.}
 
-Les références bibliographiques à titre non latin s'affichent et se
-trient correctement grâce à \texttt{biber} : voir par exemple
-\textcite{barhudarov1975} (russe), \textcite{xietianzhen1999} (chinois), \textcite{aljahiz} (arabe), et \textcite{dionysiusthraxtechne} (grec).
+Les références bibliographiques se citent avec \code{\autocite{clé}}
+(entre parenthèses) ou \code{\textcite{clé}} (dans la phrase) :
+
+\begin{latexcode}
+D'après \textcite{barhudarov1975}, la traduction ...
+... la traductologie outillée \autocite{schlechtweg-etal-2020-semeval}.
+\end{latexcode}
+
+\noindent Rendu : les références à titre non latin s'affichent et se
+trient correctement grâce à \code{biber} — voir par exemple
+\textcite{barhudarov1975} (russe), \textcite{xietianzhen1999} (chinois) et
+\textcite{aljahiz} (arabe).

@@ -27,7 +27,7 @@ multilingue (TIM), Université de Genève.
 - **Multilingue** : français (langue principale) + arabe, russe, chinois,
   japonais, grec pré-configurés, avec exemples.
 - **Polices 100 % libres** (Noto). Aucune police propriétaire.
-- **Bibliographie** : `biblatex` + `biber`, style auteur-date.
+- **Bibliographie** : `biblatex` + `biber`, style **APA 7** (auteur-date).
 - **Identité visuelle** : couleurs de la charte graphique UNIGE, logo
   institutionnel, accent aux couleurs de la FTI.
 
@@ -155,7 +155,7 @@ config/
   polices.tex             fontspec : latin, CJK, arabe (+ repli statique)
   langues.tex             polyglossia : français + langues secondaires
   style-fti.tex           Couleurs charte UNIGE, en-têtes, titres
-  biblio.tex              biblatex + biber (auteur-date)
+  biblio.tex              biblatex + biber (APA 7, repli auteur-date)
 couverture/
   page-titre.tex          Page de titre au style FTI
 corps/
@@ -175,6 +175,33 @@ ressources/
 scripts/
   get-fonts.sh            Récupère des polices statiques (voir ci-dessus)
 ```
+
+## Style bibliographique
+
+La FTI **n'impose pas un style unique**. L'*Aide-mémoire à l'intention
+des étudiants préparant un mémoire de maîtrise en traduction ou en
+technologies de la traduction et de la communication* (MA traduction /
+MATECH) précise que « les citations et références suivent les consignes
+de votre unité ou de votre jury » et que la présentation formelle est
+fixée « par votre directeur ou directrice de mémoire ». Le format
+attendu est de type **auteur-date**.
+
+Ce modèle utilise par défaut **APA 7** (via `biblatex-apa`), qui est la
+norme de référence à l'échelle de l'UNIGE et convient bien au Département
+TIM. Le style se règle dans `config/biblio.tex` :
+
+- **APA 7** (défaut) : nécessite `biblatex-apa`, présent sur Overleaf et
+  dans une installation TeX Live complète.
+- **Repli automatique** : si `biblatex-apa` est absent, le modèle bascule
+  sur le style natif `authoryear` (auteur-date lui aussi) ; le document
+  compile alors partout.
+- Pour **forcer** `authoryear` (p. ex. en cas d'erreur
+  `usenarrator undefined` due à un `biblatex` et un `biblatex-apa`
+  désynchronisés sur certaines distributions Linux), commentez la ligne
+  `\thesisapatrue` dans `config/biblio.tex`.
+
+Vérifiez auprès de votre directeur/directrice de mémoire le style
+réellement attendu et adaptez `config/biblio.tex` en conséquence.
 
 ## Personnalisation
 

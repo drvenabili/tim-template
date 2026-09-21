@@ -22,7 +22,25 @@
 
 \usepackage{csquotes} % requis par biblatex ; sûr même si déjà chargé
 
-\IfFileExists{apa7.bbx}{%
+% ---------------------------------------------------------------------
+%  CHOIX DU STYLE
+%  ---------------------------------------------------------------------
+%  Par défaut : APA 7 (via biblatex-apa), présent sur Overleaf et dans une
+%  installation TeX Live complète.
+%
+%  Si votre installation ne dispose PAS de biblatex-apa, ou si vous obtenez
+%  une erreur « usenarrator undefined » (biblatex et biblatex-apa
+%  désynchronisés, cas de certains paquets Linux), commentez la ligne
+%  \thesisapatrue ci-dessous : le modèle utilisera le style natif
+%  « authoryear » (auteur-date lui aussi), qui fonctionne partout.
+% ---------------------------------------------------------------------
+\newif\ifthesisapa
+\thesisapatrue           % <- commentez cette ligne pour forcer « authoryear »
+
+% Sécurité : si biblatex-apa est absent, on force le repli quoi qu'il arrive.
+\IfFileExists{apa.bbx}{}{\thesisapafalse}
+
+\ifthesisapa
   % ---- Style APA 7 (préféré) ----------------------------------------
   \usepackage[
     backend=biber,
@@ -33,7 +51,7 @@
   ]{biblatex}
   % Localisation française des mentions APA (« et al. », « & », etc.).
   \DeclareLanguageMapping{french}{french-apa}
-}{%
+\else
   % ---- Repli : style auteur-date natif ------------------------------
   \usepackage[
     backend=biber,
@@ -52,7 +70,7 @@
     biblatex-apa introuvable : repli sur le style « authoryear ».
     Sur Overleaf / TeX Live complet, APA 7 sera utilisé automatiquement.%
   }
-}
+\fi
 
 % Fichier de références.
 \addbibresource{biblio/references.bib}

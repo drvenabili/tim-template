@@ -1,0 +1,123 @@
+% =====================================================================
+%  corps/00-prise-en-main.tex
+%  Mode d'emploi général du modèle (structure, métadonnées, options).
+%  Ce chapitre est destiné à l'auteur du mémoire/thèse : supprimez-le une
+%  fois votre document en place.
+% =====================================================================
+\chapter{Prise en main du modèle}
+\label{chap:prise-en-main}
+
+\begin{quote}\small
+Ce chapitre explique comment utiliser le modèle. \textbf{Supprimez-le}
+(ainsi que le chapitre~\ref{chap:exemples}) lorsque vous rédigez votre
+propre document : retirez les lignes \code{\input{...}} correspondantes
+dans \code{these.tex}.
+\end{quote}
+
+% ---------------------------------------------------------------------
+\section{Compilation}
+
+Le document se compile avec \textbf{XeLaTeX} (pour l'Unicode et les polices
+OpenType), suivi de \code{biber} pour la bibliographie :
+
+\begin{latexcode}
+xelatex these
+biber   these
+xelatex these
+xelatex these
+\end{latexcode}
+
+\noindent Sur Overleaf, réglez le compilateur sur \textbf{XeLaTeX}
+(\emph{Menu $\rightarrow$ Settings $\rightarrow$ Compiler}). En local, \code{latexmk} lit le
+fichier \code{latexmkrc} fourni et enchaîne tout automatiquement :
+
+\begin{latexcode}
+latexmk these
+\end{latexcode}
+
+% ---------------------------------------------------------------------
+\section{Structure des fichiers}
+
+Le document maître est \code{these.tex}. Il ne contient presque pas de
+texte : il charge la configuration puis inclut les chapitres.
+
+\begin{latexcode}
+\input{config/preambule}   % classe, géométrie, paquets
+\input{config/polices}     % fontspec (latin, CJK, arabe, éthiopien)
+\input{config/langues}     % polyglossia (français + langues secondaires)
+\input{config/biblio}      % biblatex + biber (APA 7)
+\input{config/style-fti}   % couleurs de la charte, en-têtes, titres
+
+\input{corps/01-introduction}
+\input{corps/02-exemples-multilingues}
+% ... ajoutez vos chapitres ici ...
+\end{latexcode}
+
+Pour ajouter un chapitre, créez un fichier dans \code{corps/} et
+ajoutez la ligne \code{\input{corps/mon-chapitre}} au bon endroit.
+
+% ---------------------------------------------------------------------
+\section{Renseigner les métadonnées}
+
+Les informations de la page de titre se trouvent en haut de
+\code{these.tex}. Modifiez-les :
+
+\begin{latexcode}
+\newcommand{\ThesisTitle}{Titre de la thèse}
+\newcommand{\ThesisSubtitle}{Sous-titre éventuel}
+\newcommand{\ThesisAuthor}{Prénom \textsc{Nom}}
+\newcommand{\ThesisDegree}{docteur·e en traitement informatique multilingue}
+\newcommand{\ThesisSupervisor}{Prof. Prénom \textsc{Nom}}
+\newcommand{\ThesisJury}{Prof. A. \textsc{Un}, Université de Genève\\%
+                         Prof. B. \textsc{Deux}, University of Stuttgart}
+\newcommand{\ThesisPlace}{Genève}
+\newcommand{\ThesisDate}{2026}
+\end{latexcode}
+
+\noindent Les membres du jury sont séparés par \code{\\} (chacun sur sa
+ligne). Ces champs alimentent aussi les métadonnées du PDF.
+
+% ---------------------------------------------------------------------
+\section{Couleur d'accent}
+
+La couleur d'accent (titres, filets, liens) est définie dans
+\code{config/style-fti.tex}. Par défaut, c'est l'orange de la FTI ; pour
+un rendu institutionnel plus neutre, basculez sur le rouge UNIGE :
+
+\begin{latexcode}
+\colorlet{accent}{ftiOrange}   % défaut : couleur de la FTI (Pantone 152C)
+% \colorlet{accent}{unigeRouge} % variante : rouge UNIGE (Pantone 214C)
+\end{latexcode}
+
+% ---------------------------------------------------------------------
+\section{Structurer le texte}
+
+Les commandes de structure usuelles sont disponibles :
+
+\begin{latexcode}
+\chapter{Titre de chapitre}
+\section{Une section}
+\subsection{Une sous-section}
+
+\begin{itemize}
+  \item premier point ;
+  \item second point.
+\end{itemize}
+
+Une citation courte se met entre guillemets français avec
+\enquote{le texte cité} (guillemets « … » automatiques).
+\end{latexcode}
+
+\noindent Pour insérer une figure :
+
+\begin{latexcode}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\linewidth]{ressources/mon-image}
+  \caption{Légende de la figure.}
+  \label{fig:mon-image}
+\end{figure}
+\end{latexcode}
+
+On renvoie ensuite à un élément numéroté avec \code{\ref{}} (p. ex.
+\code{\ref{fig:mon-image}}) et à une page avec \code{\pageref{}}.
