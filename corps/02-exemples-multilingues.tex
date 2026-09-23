@@ -28,7 +28,7 @@ Grec     : \gr{ ... texte grec ... }
 Tigrinya : \ti{ ... texte tigrinya ... }
 \end{latexcode}
 
-\noindent Rendu (avec du vrai texte) :
+\noindent \textbf{Rendu :}
 
 \begin{itemize}
   \item Arabe : \ar{مرحبا بالعالم}
@@ -130,7 +130,7 @@ de largeur automatique). Ils acceptent les commandes multilingues :
 \end{table}
 \end{latexcode}
 
-\noindent Rendu :
+\noindent \textbf{Rendu :}
 
 \begin{table}[htbp]
   \centering
@@ -158,10 +158,10 @@ Une note de bas de page s'insère avec \code{\footnote{...}} et peut, elle
 aussi, contenir plusieurs écritures :
 
 \begin{latexcode}
-... plusieurs écritures.\footnote{Arabe \ar{ ... }, russe \ru{ ... }.}
+\dots{} plusieurs écritures.\footnote{Arabe \ar{ ... }, russe \ru{ ... }.}
 \end{latexcode}
 
-\noindent Rendu : une note peut contenir plusieurs
+\noindent \textbf{Rendu :} une note peut contenir plusieurs
 écritures.\footnote{Exemple : arabe \ar{هامش}, russe \ru{сноска},
 chinois \zh{脚注}, japonais \ja{脚注}.}
 
@@ -169,11 +169,19 @@ Les références bibliographiques se citent avec \code{\autocite{clé}}
 (entre parenthèses) ou \code{\textcite{clé}} (dans la phrase) :
 
 \begin{latexcode}
-D'après \textcite{barhudarov1975}, la traduction ...
-... la traductologie outillée \autocite{schlechtweg-etal-2020-semeval}.
+D'après \textcite{barhudarov1975}, la traduction \dots{}  \textcite{xietianzhen1999, aljahiz}
+\dots{} la traductologie outillée \autocite{schlechtweg-etal-2020-semeval}.
 \end{latexcode}
 
-\noindent Rendu : les références à titre non latin s'affichent et se
-trient correctement grâce à \code{biber} — voir par exemple
-\textcite{barhudarov1975} (russe), \textcite{xietianzhen1999} (chinois) et
-\textcite{aljahiz} (arabe).
+\noindent \textbf{Rendu :} D'après \textcite{barhudarov1975}, la traduction \dots{} \textcite{xietianzhen1999, aljahiz} 
+\dots{} la traductologie outillée \autocite{schlechtweg-etal-2020-semeval}.
+
+Comme démontré ci-dessus, les références à des auteurs dont le nom s'écrit dans des caractères non latins s'affichent et se
+trient correctement grâce à \code{biber}.
+
+\code{biber} permet également d'ajouter des \enquote{pre-notes} et \enquote{post-notes} :
+\begin{latexcode}
+\dots{} mentionnions \textcite[originalement du 9ème siècle,][qui traduit Aristote]{aljahiz}
+\end{latexcode}
+
+\noindent \textbf{Rendu :} \dots{} mentionnions \textcite[originalement du 9ème siècle,][qui traduit Aristote]{aljahiz}
